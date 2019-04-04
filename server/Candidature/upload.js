@@ -22,7 +22,7 @@ app.post("/uploadFile", function(req, res) {
 
   // Pour le moment il est copié en temporaire et il empêche de copier d'autres fichiers
   form.on("fileBegin", function(name, file) {
-    file.path = "../server/uploads/" + file.name;
+    file.path = "../Suivi-candidature-E-MIAGE-Back/server/uploads/" + file.name;
   });
   // Maintenant on le copie vraiment dans le répertoire, au même endroit que le temporaire
   form.on("file", function(name, file) {
