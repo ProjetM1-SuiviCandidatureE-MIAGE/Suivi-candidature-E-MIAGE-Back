@@ -6,6 +6,14 @@ function newCandidature(req, res) {
   CandidatureProcess.newCandidature(req, res);
 }
 
+function saveCandidature(req,res){
+  CandidatureProcess.saveCandidature(req,res);
+}
+
+function validateDraft(req,res){
+  CandidatureProcess.validateDraft(req,res);
+}
+
 //--afficher toutes les candidatures
 function displayAll(req, res) {
  CandidatureProcess.displayAll(req,res);
@@ -53,3 +61,5 @@ exports.editCandidature = editCandidature;
 exports.readCandidature = readCandidature;
 exports.deleteCandidature = deleteCandidature;
 exports.getIdCandidat = getIdCandidat;
+exports.saveCandidature = saveCandidature;
+exports.validateDraft = validateDraft;

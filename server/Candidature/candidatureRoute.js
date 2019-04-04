@@ -13,6 +13,12 @@ router.get('/DisplayNewCandidature',candidatureAction.DisplayNewCandidature);
 //--Creation d'une candidature
 router.post('/newCandidature',candidatureAction.newCandidature);
 
+//-- Sauvegarder une candidature en brouillon
+router.post('/saveCandidature',candidatureAction.saveCandidature);
+
+//-- Valider et envoyer un brouillon
+router.post('/validateDraft',candidatureAction.validateDraft);
+
 // -- UPDATE
 router.put('/edit/:id', candidatureAction.editCandidature);
 

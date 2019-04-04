@@ -1,10 +1,15 @@
 const Candidature = require("./candidatureModel");
 const Candidat = require("../Candidat/candidatModel");
-   
+const temporaryFile = 
+  `{ 
+    "nom" : "0", 
+    "date" : "0", 
+    "fichier" : "0",
+    "type ": "0"
+  }`;   
 
 //--ajouter une nouvelle candidature
 function newCandidature(req, res) {
-  
   console.log(JSON.stringify(req.body));
   let newCandidature = new Candidature(req.body);
   newCandidature.id = newCandidature._id;
@@ -17,6 +22,56 @@ function newCandidature(req, res) {
       res.status(400).json(err);
     }
   );
+}
+
+function validateDraft (req, res){
+
+  if (req.body.candidat.mail == "temporaryMail" || req.body.cv == temporaryFile || req.body.lm == temporaryFile || req.body.releveNote == temporaryFile || req.body.diplome == temporaryFile){
+    res.status(400).json("Les valeurs ne sont pas valides");
+  }
+  else {
+    
+    if (req.body.etat === "brouillon" )
+        req.body.etat = "non traitée";
+
+      this.newCandidature(req,res);
+  }
+}
+
+function saveCandidature(req, res){
+  console.log(JSON.stringify(req.body));
+  
+  if (req.body.etat !== "brouillon")
+    res.status(400).json("Le fichier n'est pas un brouillon");
+  else {
+    if (req.body.candidat.mail == null || req.body.candidat.mail == ""){
+      req.body.candidat.mail = "temporaryMail";     
+    }
+    if (req.body.cv == null){
+     
+      req.body.cv = temporaryFile;
+    }
+    if (req.body.lm == null){
+      req.body.lm = temporaryFile;
+    }
+    if (req.body.releveNote == null){
+      req.body.releveNote = temporaryFile;
+    }
+    if (req.body.diplome == null){
+      req.body.diplome = temporaryFile;
+    }
+    let newCandidature = new Candidature(req.body);
+    newCandidature.id = newCandidature._id;
+
+    newCandidature.save().then(
+      () => {
+        res.status(200).json(newCandidature._id);
+      },
+      err => {
+        res.status(400).json(err);
+      }
+    );
+  }
 }
 
 //--afficher toutes les candidatures
@@ -117,4 +172,6 @@ recupération d'une candidature en fonction de l'id*/
   exports.deleteCandidature = deleteCandidature;
   exports.readCandidature = readCandidature;
   exports.getIdCandidature = getIdCandidature;
+  exports.saveCandidature = saveCandidature;
+  exports.validateDraft = validateDraft;
  
