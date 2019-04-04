@@ -11,8 +11,7 @@ function newCandidature(req, res) {
 
   newCandidature.save().then(
     () => {
-      console.log("coucou");
-      res.status(200).json(newCandidature);
+      res.status(200).json(newCandidature._id);
     },
     err => {
       res.status(400).json(err);
@@ -57,22 +56,6 @@ function editCandidature(req,res, id) {
     );
   }
 
-  /*
-function editCandidature(req, res) {
-  Candidature.updateOne(
-    { _id: req.params.id },
-    { $set: req.body },
-    (err, updatedCandidature) => {
-      if (err) {
-        res.status(400).json(err);
-      } else {
-        res.status(200).json(updatedCandidature);
-      }
-    }
-  );
-}
-
-*/
 
     //--afficher les nouvelle candidatures
 function DisplayNewCandidature(req, res) {

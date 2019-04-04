@@ -21,17 +21,11 @@ function DisplayNewCandidature(req, res) {
   CandidatureProcess.DisplayNewCandidature(req,res);
 }
 
+//--Update d'une candidature
 function editCandidature(req, res) {
-
- // let candidat = new Candidat(req.body);
- // const idParam = CandidatureProcess.getIdCandidature(candidat);
   const idParam = req.params.id;
-  
   console.log("idParam : "+idParam);
-  //CandidatureProcess.editCandidature(newCandidature,idParam,res);
   CandidatureProcess.editCandidature(req,res,idParam);
-  
-  
 }
 
 // -- READ

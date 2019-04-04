@@ -51,19 +51,18 @@ const candidatureSchema = new mongoose.Schema({
     candidat : {
         nom : {
             type : String,
-            require : [true,'Le champs truc prenom ne peut pas être vide']
+            required :true
         },
         prenom : {
             type : String,
-            require : [true,'Le champs prenom ne peut pas être vide']
+            required : true
         },
         mail : {
             type: String,
-            require: [true,'Le champs mail ne peut pas être vide']
+            required: true
         },
         mdp : {
             type : String,
-            require : [true,'Le champs mdp ne peut pas être vide']
         },
         /* type: mongoose.Schema.Types.ObjectId,
         ref: 'Candidat' */
