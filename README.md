@@ -1,5 +1,8 @@
-﻿--> Pour exécuter le front et le back en même temps, utiliser la commande suivante : 
---> npm run startall
+﻿--> Pour exécuter le back, utiliser la commande suivante : 
+--> node app.js 
+(ATTENTION : Si vous souhaitez démarrer le Front et le Back en même temps il faut passer par Suivi-candidature-E-MIAGE-Front)
+
+
 
 # Suivi-candidature-E-MIAGE
 							Cahier des Charges :
