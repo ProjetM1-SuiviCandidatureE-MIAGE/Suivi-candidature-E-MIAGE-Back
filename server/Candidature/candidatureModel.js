@@ -31,6 +31,13 @@ const candidatureSchema = new mongoose.Schema({
         type : String
     },
 
+    diplome : {
+        nom : String,
+        date : String,
+        fichier : String,
+        type : String
+    },
+
     autresFichier : [
 
         {
