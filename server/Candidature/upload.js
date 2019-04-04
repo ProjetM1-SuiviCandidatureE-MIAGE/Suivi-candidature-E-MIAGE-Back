@@ -33,7 +33,7 @@ app.post("/uploadFile", function(req, res) {
 // -- Supprimer un fichier
 app.delete("/deleteFile", function(req, res) {
   console.info("Suppression du fichier : " + req.body.fichier);
-  fs.unlinkSync("../server/uploads/" + req.body.fichier);
+  fs.unlinkSync("../Suivi-candidature-E-MIAGE-Back/server/uploads/" + req.body.fichier);
   res.send({ text: "fichier supprimé : " + req.body.fichier });
 });
 
