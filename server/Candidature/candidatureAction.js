@@ -23,13 +23,13 @@ function DisplayNewCandidature(req, res) {
 
 function editCandidature(req, res) {
 
-  let candidat = new Candidat(req.body);
-  let idParam = CandidatureProcess.getIdCandidature(candidat);
+ // let candidat = new Candidat(req.body);
+ // const idParam = CandidatureProcess.getIdCandidature(candidat);
+  const idParam = req.params.id;
   
-  setTimeout(function() {
-    console.log("idParam : "+idParam);
-    CandidatureProcess.editCandidature(newCandidature,idParam,res);
-  }, 3000);
+  console.log("idParam : "+idParam);
+  //CandidatureProcess.editCandidature(newCandidature,idParam,res);
+  CandidatureProcess.editCandidature(req,res,idParam);
   
   
 }

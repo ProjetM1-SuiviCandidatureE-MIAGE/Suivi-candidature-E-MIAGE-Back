@@ -40,6 +40,7 @@ function getAllCandidatures(req, res) {
 }
 
 // -- UPDATE
+
 function editCandidature(req,res, id) {
 
     console.log("Req : "+req);
@@ -55,6 +56,23 @@ function editCandidature(req,res, id) {
       }
     );
   }
+
+  /*
+function editCandidature(req, res) {
+  Candidature.updateOne(
+    { _id: req.params.id },
+    { $set: req.body },
+    (err, updatedCandidature) => {
+      if (err) {
+        res.status(400).json(err);
+      } else {
+        res.status(200).json(updatedCandidature);
+      }
+    }
+  );
+}
+
+*/
 
     //--afficher les nouvelle candidatures
 function DisplayNewCandidature(req, res) {
@@ -102,7 +120,7 @@ function readCandidature(req, res) {
 recupération d'une candidature en fonction de l'id*/
 
   function getIdCandidature(req, res) {
-    Candidature.findOne({"candidat.mail" : "pogoman28@gmail.com"}, function(err, result) {
+    Candidature.findOne({"candidat.mail" : req.mail}, function(err, result) {
         if (err) throw err;
         console.log("ID is : "+result._id);
       });
