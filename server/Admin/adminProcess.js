@@ -24,6 +24,7 @@ auth.checkAuth = function(req, res, next) {
             text: "Authentification réussi",
             prenom: admin.prenom,
             nom: admin.nom,
+            id: admin._id,
             token: admin.getToken()
           });
         } else {

@@ -26,6 +26,7 @@ auth.checkAuth = function(req, res, next) {
             text: "Authentification réussi",
             prenom: candidat.prenom,
             nom: candidat.nom,
+            id: candidat.id,
             token: candidat.getToken()
           });
         } else {
@@ -128,6 +129,7 @@ function signupCandidat(req, res) {
           } else {
             res.status(200).json({
               text: "Succès",
+              id: candidat._id,
               token: candidat.getToken()
             });
           }
