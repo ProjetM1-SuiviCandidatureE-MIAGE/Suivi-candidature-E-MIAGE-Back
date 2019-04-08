@@ -24,6 +24,10 @@ function getAllCandidatures(req, res) {
   CandidatureProcess.getAllCandidatures(req,res);
 }
 
+function getCandidaturesByID(req,res) {
+    CandidatureProcess.getCandidaturesByID(req,res);
+}
+
 //--afficher les nouvelle candidatures
 function DisplayNewCandidature(req, res) {
   CandidatureProcess.DisplayNewCandidature(req,res);
@@ -56,6 +60,7 @@ function getIdCandidat(req, res) {
 exports.newCandidature = newCandidature;
 exports.displayAll = displayAll;
 exports.getAllCandidatures = getAllCandidatures;
+exports.getCandidaturesByID = getCandidaturesByID
 exports.DisplayNewCandidature = DisplayNewCandidature;
 exports.editCandidature = editCandidature;
 exports.readCandidature = readCandidature;
