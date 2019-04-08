@@ -1,5 +1,5 @@
 let auth = module.exports;
-const Apprenant = require('./apprenantModel');
+const Apprenant = require('../Models/apprenantModel');
 const bcrypt = require("bcrypt");
 
 auth.checkAuth = function(req, res, next){

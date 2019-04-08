@@ -1,5 +1,5 @@
-const Candidature = require("./candidatureModel");
-const Candidat = require("../Candidat/candidatModel");
+const Candidature = require("../Models/candidatureModel");
+const Candidat = require("../Models/candidatModel");
 const temporaryFile = 
   `{ 
     "nom" : "0", 
@@ -24,6 +24,7 @@ function newCandidature(req, res) {
   );
 }
 
+//--valider le brouillon pour le transformer en candidature en attente
 function validateDraft (req, res){
 
   if (req.body.candidat.mail == "temporaryMail" || req.body.cv == temporaryFile || req.body.lm == temporaryFile || req.body.releveNote == temporaryFile || req.body.diplome == temporaryFile){
@@ -37,6 +38,8 @@ function validateDraft (req, res){
       this.newCandidature(req,res);
   }
 }
+
+//--Enregistrer la candidature comme brouillon 
 
 function saveCandidature(req, res){
   console.log(JSON.stringify(req.body));
@@ -90,6 +93,16 @@ function getAllCandidatures(req, res) {
       console.log(err);
     }
     res.send(candidatures);
+  });
+}
+
+//--Renvoi les candidatures en fonction de l'id d'un candidat
+function getCandidaturesByID (id,res){
+  Candidature.findOne({"candidat.id" : id}, function(err, candidatures) {
+    if (err) {
+      res.status(400).json(err);
+    }
+      res.send(candidatures);
   });
 }
 
@@ -165,6 +178,7 @@ recupération d'une candidature en fonction de l'id*/
   }
 
   exports.getAllCandidatures = getAllCandidatures;
+  exports.getCandidaturesByID = getCandidaturesByID;
   exports.newCandidature = newCandidature;
   exports.displayAll = displayAll;
   exports.DisplayNewCandidature = DisplayNewCandidature;

@@ -1,4 +1,4 @@
-const Admin = require("./adminModel");
+const Admin = require("../Models/adminModel");
 let auth = module.exports;
 
 auth.checkAuth = function(req, res, next) {
