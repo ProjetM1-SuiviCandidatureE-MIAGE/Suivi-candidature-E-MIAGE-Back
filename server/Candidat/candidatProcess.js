@@ -1,4 +1,4 @@
-const Candidat = require("./candidatModel");
+const Candidat = require("../Models/candidatModel");
 const bcrypt = require("bcrypt");
 const auth = module.exports;
 

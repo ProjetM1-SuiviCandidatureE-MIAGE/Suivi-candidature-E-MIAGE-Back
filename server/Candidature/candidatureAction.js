@@ -1,4 +1,4 @@
-const Candidat = require("../Candidat/candidatModel");
+const Candidat = require("../Models/candidatModel");
 const CandidatureProcess = require("./candidatureProcess");
 
 //--ajouter une nouvelle candidature

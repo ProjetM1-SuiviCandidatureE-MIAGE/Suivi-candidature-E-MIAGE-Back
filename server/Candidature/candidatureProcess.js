@@ -1,5 +1,5 @@
-const Candidature = require("./candidatureModel");
-const Candidat = require("../Candidat/candidatModel");
+const Candidature = require("../Models/candidatureModel");
+const Candidat = require("../Models/candidatModel");
 const temporaryFile = 
   `{ 
     "nom" : "0", 
