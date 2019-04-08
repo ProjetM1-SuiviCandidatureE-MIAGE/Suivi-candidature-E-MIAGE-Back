@@ -49,6 +49,10 @@ const candidatureSchema = new mongoose.Schema({
     ],
 
     candidat : {
+        id : {
+            type : String,
+            required :true
+        },
         nom : {
             type : String,
             required :true
