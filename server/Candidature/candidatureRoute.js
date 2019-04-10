@@ -8,7 +8,7 @@ router.get('/displayAll', candidatureAction.displayAll);
 router.get('/getAllCandidatures', candidatureAction.getAllCandidatures);
 
 //Renvoi les candidatures d'un candidat
-router.get('/getCandidatures',candidatureAction.getCandidaturesByID);
+router.get('/getCandidatures/:id',candidatureAction.getCandidaturesByID);
 
 //--afficher les nouvelle candidatures
 router.get('/DisplayNewCandidature',candidatureAction.DisplayNewCandidature); 
