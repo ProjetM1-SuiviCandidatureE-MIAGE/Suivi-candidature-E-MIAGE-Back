@@ -25,7 +25,7 @@ function getAllCandidatures(req, res) {
 }
 
 function getCandidaturesByID(req,res) {
-    CandidatureProcess.getCandidaturesByID(req,res);
+    CandidatureProcess.getCandidaturesByID(req.params.id,res);
 }
 
 //--afficher les nouvelle candidatures
