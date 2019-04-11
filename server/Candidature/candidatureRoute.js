@@ -1,17 +1,11 @@
 const router = require('express').Router();
 const candidatureAction = require('./candidatureAction');
 
-//--afficher toutes les candidatures
-router.get('/displayAll', candidatureAction.displayAll);
-
 //Get all candidatures
 router.get('/getAllCandidatures', candidatureAction.getAllCandidatures);
 
 //Renvoi les candidatures d'un candidat
 router.get('/getCandidatures/:id',candidatureAction.getCandidaturesByID);
-
-//--afficher les nouvelle candidatures
-router.get('/DisplayNewCandidature',candidatureAction.DisplayNewCandidature); 
 
 //--Creation d'une candidature
 router.post('/newCandidature',candidatureAction.newCandidature);

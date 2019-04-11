@@ -1,5 +1,4 @@
 const Candidature = require("../Models/candidatureModel");
-const Candidat = require("../Models/candidatModel");
 const temporaryFile = 
   `{ 
     "nom" : "0", 
@@ -9,43 +8,41 @@ const temporaryFile =
   }`;   
 
 //--ajouter une nouvelle candidature
-function newCandidature(req, res) {
-  console.log(JSON.stringify(req.body));
-  let newCandidature = new Candidature(req.body);
+function newCandidature(bodyCandidature) {
+  let newCandidature = new Candidature(bodyCandidature);
   newCandidature.id = newCandidature._id;
 
   newCandidature.save().then(
     () => {
-      res.status(200).json(newCandidature._id);
+      return newCandidature._id;
     },
     err => {
-      res.status(400).json(err);
+      return err;
     }
   );
 }
 
-//--valider le brouillon pour le transformer en candidature en attente
-function validateDraft (req, res){
+//--valider le brouillon pour le transformer en candidature non traité
+function validateDraft (req){
 
   if (req.body.candidat.mail == "temporaryMail" || req.body.cv == temporaryFile || req.body.lm == temporaryFile || req.body.releveNote == temporaryFile || req.body.diplome == temporaryFile){
-    res.status(400).json("Les valeurs ne sont pas valides");
+   return "Les valeurs ne sont pas valides";
   }
   else {
     
     if (req.body.etat === "brouillon" )
         req.body.etat = "non traitée";
 
-      this.newCandidature(req,res);
+      this.newCandidature(req);
   }
 }
 
 //--Enregistrer la candidature comme brouillon 
 
-function saveCandidature(req, res){
-  console.log(JSON.stringify(req.body));
+function saveCandidature(req){
   
   if (req.body.etat !== "brouillon")
-    res.status(400).json("Le fichier n'est pas un brouillon");
+    return "Le fichier n'est pas un brouillon";
   else {
     if (req.body.candidat.mail == null || req.body.candidat.mail == ""){
       req.body.candidat.mail = "temporaryMail";     
@@ -68,110 +65,85 @@ function saveCandidature(req, res){
 
     newCandidature.save().then(
       () => {
-        res.status(200).json(newCandidature._id);
+        return newCandidature._id;
       },
       err => {
-        res.status(400).json(err);
+        return err;
       }
     );
   }
 }
 
-//--afficher toutes les candidatures
-function displayAll(req, res) {
-  Candidature.find({})
-    .populate("candidats")
-    .then(candidatures => {
-      res.send("index", { candidatures: candidatures });
-    });
-}
-
 //--récupérer toute les candidatures
-function getAllCandidatures(req, res) {
+function getAllCandidatures() {
   Candidature.find({}, function(err, candidatures) {
-    if (err) {
-      console.log(err);
-    }
-    res.send(candidatures);
+    if (err) 
+      return err;
+    else
+      return candidatures;
   });
 }
 
 //--Renvoi les candidatures en fonction de l'id d'un candidat
-function getCandidaturesByID (id,res){
+function getCandidaturesByID (id){
   Candidature.findOne({"candidat.id" : id}, function(err, candidatures) {
     if (err) {
-      res.status(400).json(err);
+     return err;
     }
-      res.send(candidatures);
+     return candidatures;
   });
 }
 
 // -- UPDATE
 
-function editCandidature(req,res, id) {
+function editCandidature(newCandidature,id) {
 
-    console.log("Req : "+req);
     Candidature.updateOne(
       { _id: id },
-      { $set: req.body },
+      { $set: newCandidature},
       (err, updatedCandidature) => {
         if (err) {
-          res.status(400).json(err);
+          return err;
         } else {
-          res.status(200).json(updatedCandidature);
+          return updatedCandidature;
         }
       }
     );
   }
 
 
-    //--afficher les nouvelle candidatures
-function DisplayNewCandidature(req, res) {
-  Candidat.find({}).then(candidats => {
-    let candidature = new Candidature();
-    res.render("index", {
-      candidature: candidature,
-      candidats: candidats,
-      endpoint: "/"
-    });
-  });
-}
-
 //--Suppression d'une candidature
-function deleteCandidature(req, res) {
-  Candidature.find({ id: req.params.id })
+function deleteCandidature(idArg) {
+  Candidature.find({ id: idArg })
     .deleteOne()
     .then(
-      () => {
-        res.status(204).json();
-      },
       err => {
-        res.status(400).json(err);
+        return (err);
       }
     );
 }
 
 // -- READ
-function readCandidature(req, res) {
-  Candidature.findOne({ _id: req.params.id }).then(
+function readCandidature(idArg) {
+  Candidature.findOne({ _id: idArg }).then(
     candidature => {
       if (candidature) {
-        res.status(200).json(candidature);
+        return candidature;
       } else {
-        res.status(404).json({ message: "Not Found" });
+        return "Not Found" ;
       }
     },
     err => {
-      res.status(400).json(err);
+      return err;
     }
   );
 }
 
 /*ATTENTION ECRIRE EN DERNIER
-recupération d'une candidature en fonction de l'id*/
+recupération d'une de l'id d'un candiat à partir d'une candidature*/
 
-  function getIdCandidature(req, res) {
-    Candidature.findOne({"candidat.mail" : req.mail}, function(err, result) {
+  function getIdCandidature(mail) {
+    Candidature.findOne({"candidat.mail" : mail}, function(err, result) {
         if (err) throw err;
         console.log("ID is : "+result._id);
       });
@@ -180,8 +152,6 @@ recupération d'une candidature en fonction de l'id*/
   exports.getAllCandidatures = getAllCandidatures;
   exports.getCandidaturesByID = getCandidaturesByID;
   exports.newCandidature = newCandidature;
-  exports.displayAll = displayAll;
-  exports.DisplayNewCandidature = DisplayNewCandidature;
   exports.editCandidature = editCandidature;
   exports.deleteCandidature = deleteCandidature;
   exports.readCandidature = readCandidature;

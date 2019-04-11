@@ -3,65 +3,80 @@ const CandidatureProcess = require("./candidatureProcess");
 
 //--ajouter une nouvelle candidature
 function newCandidature(req, res) {
-  CandidatureProcess.newCandidature(req, res);
-}
-
-function saveCandidature(req,res){
-  CandidatureProcess.saveCandidature(req,res);
+  CandidatureProcess.newCandidature(req.body).then(
+    result => { 
+      res.send.json(result);
+    }
+  );
 }
 
 function validateDraft(req,res){
-  CandidatureProcess.validateDraft(req,res);
+  CandidatureProcess.validateDraft(req);
 }
 
-//--afficher toutes les candidatures
-function displayAll(req, res) {
- CandidatureProcess.displayAll(req,res);
+function saveCandidature(req,res){
+  CandidatureProcess.saveCandidature(req);
 }
 
 //--récupérer toute les candidatures
 function getAllCandidatures(req, res) {
-  CandidatureProcess.getAllCandidatures(req,res);
+  CandidatureProcess.getAllCandidatures().then(
+    result => {
+      res.send.json(result);
+    }
+  );
 }
 
 function getCandidaturesByID(req,res) {
-    CandidatureProcess.getCandidaturesByID(req.params.id,res);
-}
-
-//--afficher les nouvelle candidatures
-function DisplayNewCandidature(req, res) {
-  CandidatureProcess.DisplayNewCandidature(req,res);
+    CandidatureProcess.getCandidaturesByID(req.params.id).then(
+      result => {
+        res.send.json(result);
+      }
+    );
 }
 
 //--Update d'une candidature
 function editCandidature(req, res) {
   const idParam = req.params.id;
-  console.log("idParam : "+idParam);
-  CandidatureProcess.editCandidature(req,res,idParam);
+  CandidatureProcess.editCandidature(req.body,idParam).then(
+    result => {
+      res.send.json(result);
+    }
+  );
 }
 
 // -- READ
 function readCandidature(req, res) {
-  CandidatureProcess.readCandidature(req,res)
+  CandidatureProcess.readCandidature(req.params.id).then(
+    result => { 
+      res.send.json(result);
+    }
+  );
 }
 
 //--Suppression d'une candidature
 function deleteCandidature(req, res) {
-  CandidatureProcess.deleteCandidature(req,res);
+  CandidatureProcess.deleteCandidature(req.params.id).then(
+    result => { 
+      res.send.json(result);
+    }
+  );
 }
 
 /*ATTENTION ECRIRE EN DERNIER
 recupération d'une candidature en fonction de l'id*/
 
 function getIdCandidat(req, res) {
-  CandidatureProcess.getIdCandidature(req,res);
+  CandidatureProcess.getIdCandidature(req.body.candidat.mail).then(
+    result => { 
+      res.send.json(result);
+    }
+  );
 }
 
 exports.newCandidature = newCandidature;
-exports.displayAll = displayAll;
 exports.getAllCandidatures = getAllCandidatures;
-exports.getCandidaturesByID = getCandidaturesByID
-exports.DisplayNewCandidature = DisplayNewCandidature;
+exports.getCandidaturesByID = getCandidaturesByID;
 exports.editCandidature = editCandidature;
 exports.readCandidature = readCandidature;
 exports.deleteCandidature = deleteCandidature;
