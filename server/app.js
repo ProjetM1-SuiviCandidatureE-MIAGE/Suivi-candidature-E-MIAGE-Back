@@ -74,7 +74,6 @@ app.use(function(req, res, next) {
 
 app.use("/candidatures", require("./Candidature/candidatureRoute"));
 app.use("/admins", require("./Admin/adminRoute"));
-app.use("/apprenants", require("./Apprenant/apprenantRoute"));
 app.use("/candidats", require("./Candidat/candidatRoute"));
 app.use("/mail", require("./Candidature/Mail"));
 app.use("/upload", require("./Candidature/upload"));
