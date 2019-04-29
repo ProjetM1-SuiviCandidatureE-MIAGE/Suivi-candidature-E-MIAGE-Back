@@ -15,7 +15,7 @@ function newCandidature(bodyCandidature) {
   newCandidature.save().then(
     () => {
       return newCandidature._id;
-    },
+    },  
     err => {
       return err;
     }
@@ -75,12 +75,14 @@ function saveCandidature(req){
 }
 
 //--récupérer toute les candidatures
-function getAllCandidatures() {
+function getAllCandidatures(callback) {
   Candidature.find({}, function(err, candidatures) {
     if (err) 
       return err;
-    else
-      return candidatures;
+    else{
+      console.log("candidatures");
+      callback(candidatures);
+    }
   });
 }
 
@@ -90,6 +92,7 @@ function getCandidaturesByID (id){
     if (err) {
      return err;
     }
+      
      return candidatures;
   });
 }
