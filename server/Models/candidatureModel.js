@@ -50,20 +50,16 @@ const candidatureSchema = new mongoose.Schema({
 
     candidat : {
         id : {
-            type : String,
-            required :true
+            type : String
         },
         nom : {
-            type : String,
-            required :true
+            type : String
         },
         prenom : {
             type : String,
-            required : true
         },
         mail : {
             type: String,
-            required: true
         },
         mdp : {
             type : String,

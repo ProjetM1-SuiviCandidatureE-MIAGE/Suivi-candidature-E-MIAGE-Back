@@ -20,12 +20,22 @@ function saveCandidature(req,res){
 
 //--récupérer toute les candidatures
 function getAllCandidatures(req, res) {
-  CandidatureProcess.getAllCandidatures().then(
-    result => {
-      res.send.json(result);
+  var promise1 = new Promise(function(resolve,reject) {
+    
+    CandidatureProcess.getAllCandidatures(function(returnValue){
+    resolve(returnValue);
+    });
+    
+  });
+
+  promise1.then((value) => {
+    console.log(value);
+      res.send(value);
     }
   );
 }
+
+
 
 function getCandidaturesByID(req,res) {
     CandidatureProcess.getCandidaturesByID(req.params.id).then(
