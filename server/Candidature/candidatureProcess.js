@@ -112,12 +112,15 @@ async function readCandidature(req){
 /*ATTENTION ECRIRE EN DERNIER
 recupération d'une de l'id d'un candiat à partir d'une candidature*/
 
-  function getIdCandidature(mail) {
+async function getIdCandidature(req) {
+  return await Candidature.findOne({mail : req.body.mail});
+};
+  /*function getIdCandidature(mail) {
     Candidature.findOne({"candidat.mail" : mail}, function(err, result) {
         if (err) throw err;
         console.log("ID is : "+result._id);
       });
-  }
+  }*/
 
   exports.getAllCandidatures = getAllCandidatures;
   exports.getCandidaturesByID = getCandidaturesByID;

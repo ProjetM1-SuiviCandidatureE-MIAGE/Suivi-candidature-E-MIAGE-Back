@@ -103,11 +103,20 @@ function deleteCandidature(req, res) {
 recupération d'une candidature en fonction de l'id*/
 
 function getIdCandidat(req, res) {
-  CandidatureProcess.getIdCandidature(req.body.candidat.mail).then(
+  try{
+    CandidatureProcess.getIdCandidat(req).then((callback) =>{
+      console.log("get ID Candidat ");
+      res.send(callback);
+    });
+
+  }catch(err){
+    res.send(err);
+  }
+ /* CandidatureProcess.getIdCandidature(req.body.candidat.mail).then(
     result => { 
       res.send.json(result);
     }
-  );
+  );*/
 }
 
 exports.newCandidature = newCandidature;

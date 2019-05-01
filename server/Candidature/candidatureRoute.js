@@ -2,15 +2,27 @@ const router = require('express').Router();
 const Joi = require('joi');
 const candidatureAction = require('./candidatureAction');
 
-const schema = Joi.object().keys({
-    autresFichier : {
-        nom : Joi.string().required(),
-        date : Joi.string().required(),
-        fichier : Joi.string().required(),
-        type : Joi.string().required()
-    }
-}
-);
+router.post('/validerSchema',(req,res, next) =>{
+    const data = req.body;
+    const schema = Joi.object().keys({
+        autresFichier : {
+            nom : Joi.string().required(),
+            date : Joi.string().required(),
+            fichier : Joi.string().required(),
+            type : Joi.string().required()
+        }
+    });
+    
+    Joi.validate(data,schema,(err, result) =>{
+        if(err){
+            res.send("Non non non c est encore du caca la ! "+ err);
+        }
+        console.log(result);
+        res.send('validation ok');
+    })
+    
+})
+
 
 //Get all candidatures
 router.get('/getAllCandidatures', candidatureAction.getAllCandidatures);
@@ -27,7 +39,7 @@ router.post('/saveCandidature',candidatureAction.saveCandidature);
 
 
 //-- Valider et envoyer un brouillon
-Joi.validate(router.post('/validateDraft',candidatureAction.validateDraft),schema);
+//Joi.validate(router.post('/validateDraft',candidatureAction.validateDraft),schema;
 
 // -- UPDATE
 router.put('/edit/:id', candidatureAction.editCandidature);
