@@ -1,4 +1,5 @@
 const Candidature = require("../Models/candidatureModel");
+const mongoose = require('mongoose');
 const temporaryFile = 
   `{ 
     "nom" : "0", 
@@ -8,19 +9,14 @@ const temporaryFile =
   }`;   
 
 //--ajouter une nouvelle candidature
-function newCandidature(bodyCandidature) {
-  let newCandidature = new Candidature(bodyCandidature);
+async function newCandidature(req) {
+  console.log("Process : " + req.body.mail);
+
+  let newCandidature = new Candidature(req);
   newCandidature.id = newCandidature._id;
 
-  newCandidature.save().then(
-    () => {
-      return newCandidature._id;
-    },  
-    err => {
-      return err;
-    }
-  );
-}
+  return await newCandidature.save();
+};
 
 //--valider le brouillon pour le transformer en candidature non traité
 function validateDraft (req){
@@ -75,33 +71,21 @@ function saveCandidature(req){
 }
 
 //--récupérer toute les candidatures
-function getAllCandidatures(callback) {
-  Candidature.find({}, function(err, candidatures) {
-    if (err) 
-      return err;
-    else{
-      console.log("candidatures");
-      callback(candidatures);
-    }
-  });
-}
+async function getAllCandidatures(){
+  return await Candidature.find();
+};
 
 //--Renvoi les candidatures en fonction de l'id d'un candidat
-function getCandidaturesByID (id){
-  Candidature.findOne({"candidat.id" : id}, function(err, candidatures) {
-    if (err) {
-     return err;
-    }
-      
-     return candidatures;
-  });
-}
+async function getCandidaturesByID (req){
+  console.log("process : " + new mongoose.Types.ObjectId(req.params.id));
+  return await Candidature.findOne({"candidat.id" : new mongoose.Types.ObjectId(req.params.id)})
+};
 
 // -- UPDATE
 
-function editCandidature(newCandidature,id) {
-
-    Candidature.updateOne(
+async function editCandidature(newCandidature,id) {
+  return await Candidature.updateOne({_id : new mongoose.Types.ObjectId(id)}, {$set : newCandidature});
+   /* Candidature.updateOne(
       { _id: id },
       { $set: newCandidature},
       (err, updatedCandidature) => {
@@ -111,36 +95,19 @@ function editCandidature(newCandidature,id) {
           return updatedCandidature;
         }
       }
-    );
-  }
+    );*/
+};
 
 
 //--Suppression d'une candidature
-function deleteCandidature(idArg) {
-  Candidature.find({ id: idArg })
-    .deleteOne()
-    .then(
-      err => {
-        return (err);
-      }
-    );
-}
+async function deleteCandidature(req){
+  return await Candidature.find({_id : new mongoose.Types.ObjectId(req.params.id)}).deleteOne();
+};
 
 // -- READ
-function readCandidature(idArg) {
-  Candidature.findOne({ _id: idArg }).then(
-    candidature => {
-      if (candidature) {
-        return candidature;
-      } else {
-        return "Not Found" ;
-      }
-    },
-    err => {
-      return err;
-    }
-  );
-}
+async function readCandidature(req){
+  return await Candidature.findOne({_id :new mongoose.Types.ObjectId(req.params.id)});
+};
 
 /*ATTENTION ECRIRE EN DERNIER
 recupération d'une de l'id d'un candiat à partir d'une candidature*/

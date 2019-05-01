@@ -3,12 +3,17 @@ const CandidatureProcess = require("./candidatureProcess");
 
 //--ajouter une nouvelle candidature
 function newCandidature(req, res) {
-  CandidatureProcess.newCandidature(req.body).then(
-    result => { 
-      res.send.json(result);
-    }
-  );
-}
+ console.log("creation test");
+ try{
+  CandidatureProcess.newCandidature(req).then((callback) =>{
+    console.log("creation candidature passe par le process" + callback);
+    res.send(callback);
+  });
+ }catch(err){
+   console.log("Création d'un candidat impossible "+err);
+   res.send(err);
+ }
+};
 
 function validateDraft(req,res){
   CandidatureProcess.validateDraft(req);
@@ -20,57 +25,78 @@ function saveCandidature(req,res){
 
 //--récupérer toute les candidatures
 function getAllCandidatures(req, res) {
-  var promise1 = new Promise(function(resolve,reject) {
-    
-    CandidatureProcess.getAllCandidatures(function(returnValue){
-    resolve(returnValue);
+  try{
+    CandidatureProcess.getAllCandidatures().then((callback)=>{
+      console.log("get all candidature fonctionne");
+      res.send(callback);
     });
-    
-  });
 
-  promise1.then((value) => {
-    console.log(value);
-      res.send(value);
-    }
-  );
+  }catch(err){
+    res.send(err);
+  }
 }
 
-
-
 function getCandidaturesByID(req,res) {
-    CandidatureProcess.getCandidaturesByID(req.params.id).then(
+   console.log("getCandidature test");
+   try{
+     CandidatureProcess.getCandidaturesByID(req).then((callback) =>{
+       console.log("Get Candidature By ID : " + callback);
+       res.send(callback);
+     });
+
+   }catch(err){
+     console.log("erreur "  + err);
+     res.send(err);
+   }
+  /* CandidatureProcess.getCandidaturesByID(req.params.id).then(
       result => {
         res.send.json(result);
       }
-    );
-}
+    );*/
+};
 
 //--Update d'une candidature
 function editCandidature(req, res) {
-  const idParam = req.params.id;
-  CandidatureProcess.editCandidature(req.body,idParam).then(
-    result => {
-      res.send.json(result);
-    }
-  );
-}
+  try{
+    CandidatureProcess.editCandidature(req.body.id).then((callback) => {
+      console.log("edit candidature ");
+      res.send(callback);
+    });
+  }catch(err){
+    res.send(err);
+  }
+};
 
 // -- READ
 function readCandidature(req, res) {
-  CandidatureProcess.readCandidature(req.params.id).then(
-    result => { 
-      res.send.json(result);
-    }
-  );
-}
+  try{
+    CandidatureProcess.readCandidature(req).then((callback) =>{
+      console.log("read candidature : " + callback);
+
+      res.send(callback);
+    });
+
+  }catch(err){
+    res.send(err);
+  }
+};
 
 //--Suppression d'une candidature
 function deleteCandidature(req, res) {
-  CandidatureProcess.deleteCandidature(req.params.id).then(
+  try{
+    CandidatureProcess.deleteCandidature(req).then((callback) =>{
+      console.log("delete Candidature ");
+      res.send(callback);
+    });
+
+  }catch(err){
+    res.send(err);
+  }
+ /* CandidatureProcess.deleteCandidature(req.params.id).then(
     result => { 
       res.send.json(result);
     }
-  );
+  );*/
 }
 
 /*ATTENTION ECRIRE EN DERNIER
