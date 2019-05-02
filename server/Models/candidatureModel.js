@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 //model pour une candidature
 const candidatureSchema = new mongoose.Schema({
 
-    etat : String,
+    etat : {
+        type : String,
+        required : true
+    },
     commentaire : String,
     date : String,
     dateTraitement : String,
@@ -60,9 +63,7 @@ const candidatureSchema = new mongoose.Schema({
         },
         mail : {
             type: String,
-        },
-        mdp : {
-            type : String,
+            required : true
         },
         /* type: mongoose.Schema.Types.ObjectId,
         ref: 'Candidat' */

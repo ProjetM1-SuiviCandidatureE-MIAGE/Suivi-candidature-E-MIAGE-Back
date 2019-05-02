@@ -1,10 +1,34 @@
 const router = require('express').Router();
 const Joi = require('joi');
 const candidatureAction = require('./candidatureAction');
-
-router.post('/validerSchema',(req,res, next) =>{
-    const data = req.body;
-    const schema = Joi.object().keys({
+const schema = Joi.object().keys({
+        date : Joi.string().required(),
+        dateTraitement : Joi.string().required(),
+        cv : Joi.required(),
+        cv : {
+            nom : Joi.string().required(),
+            date : Joi.string().required(),
+            fichier : Joi.string().required(),
+            type : Joi.string().required()
+        },
+        lm : {
+            nom : Joi.string().required(),
+            date : Joi.string().required(),
+            fichier : Joi.string().required(),
+            type : Joi.string().required()
+        },
+        releveNote : {
+            nom : Joi.string().required(),
+            date : Joi.string().required(),
+            fichier : Joi.string().required(),
+            type : Joi.string().required()
+        },
+        diplome : {
+            nom : Joi.string().required(),
+            date : Joi.string().required(),
+            fichier : Joi.string().required(),
+            type : Joi.string().required()
+        },
         autresFichier : {
             nom : Joi.string().required(),
             date : Joi.string().required(),
@@ -12,6 +36,10 @@ router.post('/validerSchema',(req,res, next) =>{
             type : Joi.string().required()
         }
     });
+
+router.post('/validerSchema',(req,res) =>{
+    const data = req.body;
+    
     
     Joi.validate(data,schema,(err, result) =>{
         if(err){
@@ -32,14 +60,10 @@ router.get('/getCandidatures/:id',candidatureAction.getCandidaturesByID);
 
 router.post('/newCandidature',candidatureAction.newCandidature);
 //--Creation d'une candidature
-//Joi.validate(router.post('/newCandidature',candidatureAction.newCandidature),schema);
+Joi.validate(router.post('/newCandidature',candidatureAction.newCandidature),schema);
 
 //-- Sauvegarder une candidature en brouillon
 router.post('/saveCandidature',candidatureAction.saveCandidature);
-
-
-//-- Valider et envoyer un brouillon
-//Joi.validate(router.post('/validateDraft',candidatureAction.validateDraft),schema;
 
 // -- UPDATE
 router.put('/edit/:id', candidatureAction.editCandidature);
