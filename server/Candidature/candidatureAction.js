@@ -33,11 +33,14 @@ function getAllCandidatures(req, res) {
 }
 
 function getCandidaturesByID(req,res) {
-   console.log("getCandidature test");
    try{
      CandidatureProcess.getCandidaturesByID(req.params.id).then((callback) =>{
        console.log("Get Candidature By ID : " + callback);
-       res.send(callback);
+       if(callback === null) {
+          res.send({text: "vide"})
+       } else {
+          res.send(callback);
+       }
      });
 
    }catch(err){
