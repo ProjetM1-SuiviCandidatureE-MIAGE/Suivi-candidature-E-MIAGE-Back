@@ -7,6 +7,7 @@
     "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "braces": "^2.3.2",
+    "chan": "^0.6.1",
     "concurrently": "^4.1.0",
     "connect-busboy": "0.0.2",
     "create-react-app": "^2.1.5",
@@ -48,7 +49,7 @@
     "server": "cd server && nodemon app.js",
     "startall": "concurrently \"npm run client\" \"npm run server\"",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3010",
@@ -63,7 +64,8 @@
   ],
   "devDependencies": {
     "chai": "*",
-    "mocha": "*",
+    "jest": "^24.8.0",
+    "mocha": "^6.1.4",
     "sinon": "*"
   }
 }

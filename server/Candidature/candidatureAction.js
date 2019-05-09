@@ -23,7 +23,6 @@ function saveCandidature(req,res){
 function getAllCandidatures(req, res) {
   try{
     CandidatureProcess.getAllCandidatures().then((callback)=>{
-      console.log("get all candidature fonctionne");
       res.send(callback);
     });
 
