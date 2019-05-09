@@ -46,11 +46,6 @@ function getCandidaturesByID(req,res) {
      console.log("erreur "  + err);
      res.send(err);
    }
-  /* CandidatureProcess.getCandidaturesByID(req.params.id).then(
-      result => {
-        res.send.json(result);
-      }
-    );*/
 };
 
 //--Update d'une candidature
@@ -90,11 +85,6 @@ function deleteCandidature(req, res) {
   }catch(err){
     res.send(err);
   }
- /* CandidatureProcess.deleteCandidature(req.params.id).then(
-    result => { 
-      res.send.json(result);
-    }
-  );*/
 }
 
 /*ATTENTION ECRIRE EN DERNIER
@@ -110,11 +100,6 @@ function getIdCandidat(req, res) {
   }catch(err){
     res.send(err);
   }
- /* CandidatureProcess.getIdCandidature(req.body.candidat.mail).then(
-    result => { 
-      res.send.json(result);
-    }
-  );*/
 }
 
 exports.newCandidature = newCandidature;

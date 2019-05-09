@@ -12,42 +12,80 @@ const candidatureSchema = new mongoose.Schema({
     dateTraitement : String,
 
     cv : {
-
-        nom : String,
-        date : String,
-        fichier : String,
-        type : String
+        nom :  {
+            String
+        },
+        date : {
+            String
+        },
+        fichier : {
+            String
+        },
+        ancienNom : {
+            String
+        }
     },
 
     lm : {
-        
-        nom : String,
-        date : String,
-        fichier : String,
-        type : String
+        nom :  {
+            String
+        },
+        date : {
+            String
+        },
+        fichier : {
+            String
+        },
+        ancienNom : {
+            String
+        }
     },
 
     releveNote : {
-        nom : String,
-        date : String,
-        fichier : String,
-        type : String
+        nom :  {
+            String
+        },
+        date : {
+            String
+        },
+        fichier : {
+            String
+        },
+        ancienNom : {
+            String
+        }
     },
 
     diplome : {
-        nom : String,
-        date : String,
-        fichier : String,
-        type : String
+        nom :  {
+            String
+        },
+        date : {
+            String
+        },
+        fichier : {
+            String
+        },
+        ancienNom : {
+            String
+        }
     },
 
     autresFichier : [
 
         {
-        nom : String,
-        date : String,
-        fichier : String,
-        type : String,
+        nom :  {
+            String
+        },
+        date : {
+            String
+        },
+        fichier : {
+            String
+        },
+        ancienNom : {
+            String
+        }
         }
     ],
 
