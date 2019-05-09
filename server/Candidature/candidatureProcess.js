@@ -32,6 +32,7 @@ async function getCandidaturesByID (id){
 // -- UPDATE
 
 async function editCandidature(newCandidature,id) {
+  console.log("Edit");
   return await Candidature.updateOne({_id : id}, {$set : newCandidature});
 };
 
