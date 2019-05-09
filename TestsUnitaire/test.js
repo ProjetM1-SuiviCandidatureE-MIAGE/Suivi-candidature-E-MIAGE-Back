@@ -4,7 +4,8 @@ var should = require('chai').should();
 
 describe('test du renvoi des candidatures avec la fonction getAllCandidatures',function(){
   it('doit renvoyer des candidatures',function(){
-     
+    console.log(fetch("http://localhost:3010/candidatures/getAllCanidatures"));
+     assert.equal(fetch("http://localhost:3010/candidatures/getAllCanidatures"), !null)
   })
 })
 
