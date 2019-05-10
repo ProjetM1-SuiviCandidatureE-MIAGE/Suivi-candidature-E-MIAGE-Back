@@ -60,7 +60,7 @@ router.get('/getCandidatures/:id',candidatureAction.getCandidaturesByID);
 
 router.post('/newCandidature',candidatureAction.newCandidature);
 //--Creation d'une candidature
-Joi.validate(router.post('/newCandidature',Joi,candidatureAction.newCandidature),schema);
+Joi.validate(router.post('/newCandidature',candidatureAction.newCandidature),schema);
 
 //-- Sauvegarder une candidature en brouillon
 router.post('/saveCandidature',candidatureAction.saveCandidature);
