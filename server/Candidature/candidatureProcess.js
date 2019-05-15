@@ -26,7 +26,7 @@ async function getAllCandidatures(){
 
 //--Renvoi les candidatures en fonction de l'id d'un candidat
 async function getCandidaturesByID (id){
-  return await Candidature.findOne({"candidat.id" : id})
+  return await Candidature.find({"candidat.id" : id})
 };
 
 // -- UPDATE

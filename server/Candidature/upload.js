@@ -9,7 +9,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // -- Récupérer un fichier
 app.get("/getFiles/:path", function(req, res) {
-  console.log("get files");
+  console.log(req.params.path);
+  const path = "./Suivi-candidature-E-MIAGE-Back/" + req.params.path;
+  console.log(path);
+  fs.readFileSync(req.params.path);
 });
 // -- Upload un fichier
 app.post("/uploadFile", function(req, res) {
