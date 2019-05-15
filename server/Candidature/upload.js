@@ -9,10 +9,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // -- Récupérer un fichier
 app.get("/getFiles/:path", function(req, res) {
+  console.log("Get FILES !");
+  console.log(req);
   console.log(req.params.path);
-  const path = "./Suivi-candidature-E-MIAGE-Back/" + req.params.path;
-  console.log(path);
-  fs.readFileSync(req.params.path);
+  const route = "../Suivi-candidature-E-MIAGE-Back/" + req.params.path;
+  console.log(route);
+  const le = fs.readFileSync(route);
+  res.send(le);
+});
+
+app.get("/getFile", function(req, res) {
+  console.log("get File !");
+  const route = "../uploads/CV/CV_Donnadieu_e93872.pdf";
+
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader("Content-Dispositon","inline; filename=CV_Donnadieu_e93872.pdf");
+  res.sendFile(path.join(__dirname, route));
 });
 // -- Upload un fichier
 app.post("/uploadFile", function(req, res) {

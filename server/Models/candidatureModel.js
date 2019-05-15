@@ -11,81 +11,55 @@ const candidatureSchema = new mongoose.Schema({
     date : String,
     dateTraitement : String,
 
-    cv : {
-        nom :  {
-            String
-        },
-        date : {
-            String
-        },
-        fichier : {
-            String
-        },
-        ancienNom : {
-            String
+    cv : [
+        {
+            _id: false,
+            nom : String,
+            date : String,
+            fichier : String,
+            ancienNom : String
+            
         }
-    },
+    ],
 
-    lm : {
-        nom :  {
-            String
-        },
-        date : {
-            String
-        },
-        fichier : {
-            String
-        },
-        ancienNom : {
-            String
+    lm : [
+        {
+            _id: false,
+            nom : String,
+            date : String,
+            fichier : String,
+            ancienNom : String
         }
-    },
+    ],
 
-    releveNote : {
-        nom :  {
-            String
-        },
-        date : {
-            String
-        },
-        fichier : {
-            String
-        },
-        ancienNom : {
-            String
+    releveNote : [
+        {
+            _id: false,
+            nom : String,
+            date : String,
+            fichier : String,
+            ancienNom : String
         }
-    },
+    ],
 
-    diplome : {
-        nom :  {
-            String
-        },
-        date : {
-            String
-        },
-        fichier : {
-            String
-        },
-        ancienNom : {
-            String
+    diplome : [
+        {
+            _id: false,
+            nom : String,
+            date : String,
+            fichier : String,
+            ancienNom : String
         }
-    },
+    ],
 
     autresFichier : [
 
         {
-        nom :  {
-            String
-        },
-        date : {
-            String
-        },
-        fichier : {
-            String
-        },
-        ancienNom : {
-            String
-        }
+            _id: false,
+            nom : String,
+            date : String,
+            fichier : String,
+            ancienNom : String
         }
     ],
 
