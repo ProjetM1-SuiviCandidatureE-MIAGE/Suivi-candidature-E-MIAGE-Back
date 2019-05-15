@@ -1,5 +1,8 @@
-const sum = require('./sum');
+//const sum = require('./sum');
+const fetch = require('node-fetch');
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(1+2).toBe(3);
+test('Simple test', async () => {
+  const fugu = await fetch("http://localhost:3010/candidatures/getCandidatures/5caddb83e63ca70584c54647");
+  console.log(fugu.body);
+  expect(fugu.body.candidat.nom).toBe("tete");
 });
