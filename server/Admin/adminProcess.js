@@ -37,3 +37,15 @@ auth.checkAuth = function(req, res, next) {
     });
   }
 };
+
+// -- UPDATE
+async function editProcess(newInfo,id) {
+  console.log(newInfo);
+  return await Admin.updateOne({_id : id}, {
+    $set :{"nom" : newInfo.nom,
+          "prenom" : newInfo.prenom,
+          "mail" : newInfo.mail        
+  }});
+};
+
+exports.editProcess = editProcess;
