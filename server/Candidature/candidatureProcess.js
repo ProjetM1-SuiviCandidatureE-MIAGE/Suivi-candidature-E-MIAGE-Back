@@ -30,7 +30,6 @@ async function getCandidaturesByID (id){
 };
 
 // -- UPDATE
-
 async function editCandidature(newCandidature,id) {
   console.log("Edit");
   return await Candidature.updateOne({_id : id}, {$set : newCandidature});
@@ -43,8 +42,8 @@ async function deleteCandidature(id){
 };
 
 // -- READ
-async function readCandidature(id){
-  return await Candidature.findOne({_id :id});
+function readCandidature(id){
+  return Candidature.findOne({_id :id});
 };
 
 /*ATTENTION ECRIRE EN DERNIER

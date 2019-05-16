@@ -2,14 +2,10 @@ const app = require("express").Router();
 const fs = require("fs"),
   path = require("path");
 const formidable = require("formidable");
-
-const bodyParser = require("body-parser");
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const CandidatureProcess = require("./CandidatureProcess");
 
 // -- Récupérer un fichier
 app.get("/getFile/:path", function(req, res) {
-  console.log("Get FILE path !");
   const dir = (req.params.path).substring(0,2);
   const route = "../uploads/" +dir+ "/" + req.params.path;
   res.setHeader('Content-Type', 'application/pdf');
@@ -18,7 +14,6 @@ app.get("/getFile/:path", function(req, res) {
 });
 // -- Télécharger un fichier vers le client
 app.get("/downloadFile/:path", function(req, res) {
-  console.log("Download !");
   const dir = (req.params.path).substring(0,2);
   const route = path.join(__dirname, "../uploads/" +dir+ "/" + req.params.path);
   res.download(route);
@@ -38,23 +33,54 @@ app.post("/uploadFile", function(req, res) {
     res.send({});
   });
 });
+
+// -- Fonction pour récupérer la candidature liée au fichier
+function findCand(id, fichier) {
+  console.log("dans find cand");
+  console.log(id);
+  try{
+    let callback = CandidatureProcess.readCandidature(id)
+    return callback;
+  }catch(err){
+    console.log(err);
+  }
+};
+
+// -- Fonction qui vérifie que le fichier n'appartient pas à une candidature envoyée à l'enseignant
+function verif(cand, fichier) {
+  console.log("dans vérif");
+  if(cand.etat === "brouillon") {
+    console.log("if");
+    const dir = fichier.substring(0,2);
+    const path = "../Suivi-candidature-E-MIAGE-Back/server/uploads/"+dir+"/"+ fichier;
+    try {
+      if (fs.existsSync(path)) {
+          fs.unlinkSync(path);
+          console.log("fichier supp");
+          return ({ text: "fichier supprimé : " + fichier });
+      } else {
+        console.log("le fichier n'existe pas");
+        return ({text: "le fichier n'existe pas"});
+      }
+    } catch(err) {
+      console.error(err)
+      return ({text: "erreur"});
+    }
+  } else {
+    console.log("else")
+    return ({text: "fichier dans une candidature non brouillon"});
+  }
+}
+
 // -- Supprimer un fichier
 app.delete("/deleteFile", function(req, res) {
   console.info("Suppression du fichier : " + req.body.fichier);
-  const dir = (req.body.fichier).substring(0,2);
-  const path = "../Suivi-candidature-E-MIAGE-Back/server/uploads/"+dir+"/"+ req.body.fichier;
-  try {
-    if (fs.existsSync(path)) {
-        fs.unlinkSync(path);
-        res.send({ text: "fichier supprimé : " + req.body.fichier });
-    } else {
-      console.log("le fichier n'existe pas")
-      res.send({text: "le fichier n'existe pas"})
-    }
-  } catch(err) {
-    console.error(err)
-    res.send({text: "erreur"})
-  }
+  let retour = findCand(req.body.id, req.body.fichier).exec();
+  retour.then(function (doc) {
+    console.log(doc);
+    let ret = verif(doc, req.body.fichier);
+    res.send(ret);
+  });
 });
 
 module.exports = app;
