@@ -59,15 +59,11 @@ function getCandidat(req, res) {
 
 // --INSCRIPTION CANDIDAT
 function signupCandidat(req, res) {
-  console.log("signUp");
-  console.log(Candidat.validateEmail);
-  console.log("signUp2");
 
   const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // Regex pour verifier le mail
 
   if (!req.body.mail || !req.body.mdp || !req.body.nom || !req.body.prenom || !req.body.mdpConfirmation) {
     //Le cas où l'email ou bien le password ne serait pas soumit ou nul
-    console.log(req.body.mail);
     res.status(400).json({
       text: "Un champ est vide ou requête invalide !"
     });
@@ -157,7 +153,17 @@ function signupCandidat(req, res) {
   }
 }
 
+// -- UPDATE
+async function editCandidat(newInfo,id) {
+  console.log(newInfo);
+  return await Candidat.updateOne({_id : id}, {
+    $set :{"nom" : newInfo.nom,
+          "prenom" : newInfo.prenom,
+          "mail" : newInfo.mail        
+  }});
+};
 
 
 exports.getCandidat = getCandidat;
 exports.signupCandidat = signupCandidat;
+exports.editCandidat = editCandidat;
