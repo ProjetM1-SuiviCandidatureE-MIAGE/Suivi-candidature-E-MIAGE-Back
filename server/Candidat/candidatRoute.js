@@ -10,4 +10,7 @@ router.post("/login", candidatAction.checkAuth);
 //--afficher les candidatures
 router.get("/candidat", candidatAction.getCandidat);
 
+//--edit candidat
+router.put("/editCandidat/:id", candidatAction.editCandidat);
+
 module.exports = router;

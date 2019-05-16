@@ -37,10 +37,6 @@ candidatSchema.methods = {
     const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return re.test(email);
   }
-  /*
-	getToken: function () {
-		return jwt.encode(this, config.secret);
-	}*/
 };
 
 candidatSchema.methods.getToken = function() {
