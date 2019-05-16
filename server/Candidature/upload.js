@@ -36,38 +36,38 @@ app.post("/uploadFile", function(req, res) {
 
 // -- Fonction pour récupérer la candidature liée au fichier
 function findCand(id, fichier) {
-  console.log("dans find cand");
-  console.log(id);
-  try{
-    let callback = CandidatureProcess.readCandidature(id)
-    return callback;
-  }catch(err){
-    console.log(err);
+  if(id === null) {
+    return ({etat: "rien"})
+  } else {
+    try{
+      let callback = CandidatureProcess.readCandidature(id)
+      return callback;
+    }catch(err){
+      console.log(err);
+    }
   }
+
 };
 
 // -- Fonction qui vérifie que le fichier n'appartient pas à une candidature envoyée à l'enseignant
 function verif(cand, fichier) {
-  console.log("dans vérif");
+  if(cand === null) {
+    return ({text: "candidature null"});
+  }
   if(cand.etat === "brouillon") {
-    console.log("if");
     const dir = fichier.substring(0,2);
     const path = "../Suivi-candidature-E-MIAGE-Back/server/uploads/"+dir+"/"+ fichier;
     try {
       if (fs.existsSync(path)) {
           fs.unlinkSync(path);
-          console.log("fichier supp");
           return ({ text: "fichier supprimé : " + fichier });
       } else {
-        console.log("le fichier n'existe pas");
         return ({text: "le fichier n'existe pas"});
       }
     } catch(err) {
-      console.error(err)
       return ({text: "erreur"});
     }
   } else {
-    console.log("else")
     return ({text: "fichier dans une candidature non brouillon"});
   }
 }
@@ -77,7 +77,6 @@ app.delete("/deleteFile", function(req, res) {
   console.info("Suppression du fichier : " + req.body.fichier);
   let retour = findCand(req.body.id, req.body.fichier).exec();
   retour.then(function (doc) {
-    console.log(doc);
     let ret = verif(doc, req.body.fichier);
     res.send(ret);
   });
