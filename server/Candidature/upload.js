@@ -20,7 +20,7 @@ app.get("/downloadFile/:path", function(req, res) {
 });
 // -- Upload un fichier
 app.post("/uploadFile", function(req, res) {
-  var form = new formidable.IncomingForm();
+  let form = new formidable.IncomingForm();
   form.parse(req);
   // Pour le moment il est copié en temporaire et il empêche de copier d'autres fichiers
   form.on("fileBegin", function(name, file) {
