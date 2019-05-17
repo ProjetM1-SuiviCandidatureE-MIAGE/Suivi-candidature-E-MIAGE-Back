@@ -2,6 +2,8 @@ const Candidat = require("../Models/candidatModel");
 const bcrypt = require("bcrypt");
 const auth = module.exports;
 
+const salt = bcrypt.genSaltSync(10);
+
 // AUTHENTIFICATION
 auth.checkAuth = function(req, res, next) {
   if (!req.body.mail || !req.body.mdp) {
@@ -88,7 +90,7 @@ function signupCandidat(req, res) {
     });
   }*/
   else {
-    const salt = bcrypt.genSaltSync(10);
+    
     const candidat = {
       nom: req.body.nom,
       prenom: req.body.prenom,
@@ -155,7 +157,7 @@ function signupCandidat(req, res) {
 
 // -- UPDATE
 async function editCandidat(newInfo,id) {
-  console.log(newInfo);
+
   return await Candidat.updateOne({_id : id}, {
     $set :{"nom" : newInfo.nom,
           "prenom" : newInfo.prenom,
@@ -163,7 +165,22 @@ async function editCandidat(newInfo,id) {
   }});
 };
 
+// --------Edit password ---------
+
+async function editPassword(currentPsw, newPsw,id) {
+
+  Candidat.findOne({ _id: id }, async function(err, candidat) {
+    if(!candidat.authenticate(currentPsw)) return "Mauvais mot de passe";
+    if(newPsw.trim()==="") return "Nouveau mot de passe vide !";
+    console.log("set psw");
+    return await Candidat.updateOne({_id : id}, {
+      $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
+    }});
+  });
+};
+
 
 exports.getCandidat = getCandidat;
 exports.signupCandidat = signupCandidat;
 exports.editCandidat = editCandidat;
+exports.editPassword = editPassword ;

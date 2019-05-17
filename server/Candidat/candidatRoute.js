@@ -13,4 +13,7 @@ router.get("/candidat", candidatAction.getCandidat);
 //--edit candidat
 router.put("/editCandidat/:id", candidatAction.editCandidat);
 
+//--edit password candidat
+router.put("/editPassword/:id",candidatAction.editPassword);
+
 module.exports = router;
