@@ -1,5 +1,7 @@
 const Candidat = require("../Models/candidatModel");
+const mail = require("../Candidature/Mail");
 const bcrypt = require("bcrypt");
+const generator = require('generate-password');
 const auth = module.exports;
 
 const salt = bcrypt.genSaltSync(10);
@@ -176,6 +178,23 @@ async function editPassword(currentPsw, newPsw,id) {
     return await Candidat.updateOne({_id : id}, {
       $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
     }});
+  });
+};
+
+// ------ Recuperation de mdp ----
+
+async function recupPassword(id) {
+
+  Candidat.findOne({ _id: id }, async function(err, candidat) {
+
+    const newPsw = generator.generate({
+      length: 10,
+      numbers: true
+    });
+
+    //mail.send()
+
+    
   });
 };
 
