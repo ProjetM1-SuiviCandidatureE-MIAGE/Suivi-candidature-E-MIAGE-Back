@@ -8,4 +8,11 @@ router.post("/login", adminAction.checkAuth);
 //--edit Admin
 router.put("/editAdmin/:id", adminAction.editAdmin);
 
+
+//--edit password candidat
+router.put("/editPassword/:id",adminAction.editPassword);
+
+//-- recup password
+router.put("/recupPassword/:id",adminAction.recupPassword);
+
 module.exports = router;
