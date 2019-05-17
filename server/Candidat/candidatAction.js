@@ -49,8 +49,20 @@ function editPassword(req,res){
   }
 }
 
+// -----Recuperation du mot de passe du candidat
+function recupPassword(req,res){
+
+  try{
+  CandidatProcess.recupPassword(req.params.id).then((callback) => {
+    res.send(callback);
+  });
+  }catch(err){
+    res.send(err);
+  }
+}
 
 exports.getCandidat = getCandidat;
 exports.signupCandidat = signupCandidat;
 exports.editCandidat = editCandidat;
 exports.editPassword = editPassword;
+exports.recupPassword = recupPassword;

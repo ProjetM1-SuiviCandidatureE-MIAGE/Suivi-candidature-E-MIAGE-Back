@@ -1,4 +1,4 @@
-let router = require("express").Router();
+const router = require("express").Router();
 const candidatAction = require("./candidatAction");
 
 //--inscription
@@ -15,5 +15,8 @@ router.put("/editCandidat/:id", candidatAction.editCandidat);
 
 //--edit password candidat
 router.put("/editPassword/:id",candidatAction.editPassword);
+
+//-- recup password
+router.put("/recupPassword/:id",candidatAction.recupPassword);
 
 module.exports = router;

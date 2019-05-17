@@ -1,5 +1,7 @@
 const Candidat = require("../Models/candidatModel");
+const mailFunction = require("../Candidature/MailProcess");
 const bcrypt = require("bcrypt");
+const generator = require('generate-password');
 const auth = module.exports;
 
 const salt = bcrypt.genSaltSync(10);
@@ -179,8 +181,37 @@ async function editPassword(currentPsw, newPsw,id) {
   });
 };
 
+// ------ Recuperation de mdp ----
+
+async function recupPassword(id) {
+
+  //Recuperation du mail du candidat
+  Candidat.findOne({ _id: id }, async function(err, candidat) {
+    const mail = candidat.mail;
+
+    const newPsw = generator.generate({
+      length: 10,
+      numbers: true
+    });
+    
+    await Candidat.updateOne({_id : id}, {
+      $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
+    }});
+
+    mailFunction.sendMail(
+      {
+        "mail" : mail,
+        "sujet" : "Recuperation mot de passe",
+        "texte" : `Bonjour, <br>
+                  Voici votre mot de passe de récuperation :   ` + newPsw
+      }
+    );
+  });
+};
+
 
 exports.getCandidat = getCandidat;
 exports.signupCandidat = signupCandidat;
 exports.editCandidat = editCandidat;
 exports.editPassword = editPassword ;
+exports.recupPassword = recupPassword;
