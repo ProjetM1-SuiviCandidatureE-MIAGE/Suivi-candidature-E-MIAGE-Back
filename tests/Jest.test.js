@@ -25,21 +25,24 @@ test('Creation candidat', async () => {
       "Content-Type": "application/json"
     }
   })
-  .then(function(response) {
+  .then(res => res.json())
+ /* .then(function(body) {
+   expect(body[0].candidat.nom).toBe("testNom");
+  })*/
+/*  .then(function(response) {
     console.log(response.json());
     return response.json();
   })
   .then(function(body) {
    expect(body[0].nom).toBe("testNom");
-  })
+  })*/
   .catch(err => {
     console.error(err);
-    alert("error !");
-  });
+  });console.log(testCandidat);
 });
 
 //-----FONCTIONS DE TEST POUR LA PARTIE CANDIDATURE-------
-test('Récupérer une candidature précise', async () => {
+/*test('Récupérer une candidature précise', async () => {
   await fetch("http://localhost:3010/candidatures/getCandidatures/5caddb83e63ca70584c54647")
   .then(res => res.json())
   .then(function(body) {
@@ -62,7 +65,7 @@ test('Recuperer toutes les candidatures', async () => {
     console.error(err);
     alert("error !");
   });
-});
+});*/
 
 /*
 
