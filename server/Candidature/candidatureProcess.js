@@ -47,7 +47,7 @@ function readCandidature(id){
 };
 
 /*ATTENTION ECRIRE EN DERNIER
-recupération d'une de l'id d'un candiat à partir d'une candidature*/
+recupération de l'id d'un candidat à partir d'une candidature*/
 
 async function getIdCandidature(req) {
   return await Candidature.findOne({mail : req.body.mail});
