@@ -55,6 +55,7 @@ const candidatureSchema = new mongoose.Schema({
     autresFichier : [
 
         {
+            
             _id: false,
             nom : String,
             date : String,
@@ -63,7 +64,9 @@ const candidatureSchema = new mongoose.Schema({
         }
     ],
 
-    candidat : {
+    candidat : [
+    {
+        _id: false,
         id : {
             type : String
         },
@@ -80,6 +83,7 @@ const candidatureSchema = new mongoose.Schema({
         /* type: mongoose.Schema.Types.ObjectId,
         ref: 'Candidat' */
     }
+    ]
 
 });
 

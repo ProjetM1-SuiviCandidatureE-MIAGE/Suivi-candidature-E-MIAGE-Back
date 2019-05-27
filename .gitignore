@@ -84,5 +84,5 @@ typings/
 .vscode/
 
 # ignore uploaded files
-uploads/
+server/uploads/
 
