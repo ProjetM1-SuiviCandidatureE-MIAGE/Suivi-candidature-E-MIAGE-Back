@@ -244,9 +244,8 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"etat" : "",
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"commentaire":"",
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"date" : "",
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dateTraitement" : "",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"dateTraitement" : ""
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"CV" :[
 
@@ -367,4 +366,15 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"mdp" : ""
 
 }
+
+**III / Synthèse du travail réalisé**
+
+|  Page d'accueil | Page Enseignant   | Page candidature |
+| :---------------: |:---------------:|:---------------:|
+| Informations général sur la formation à distance.|Notification d’une candidature envoyée.|  Modification de  ses informations personnelles |
+| Inscription/connexion aux espaces enseignant/candidatures.|Modification de ses informations personnelles.|   Création d’une candidature « brouillon » non finalisée. |
+| Notification d’un mail d’inscription au site de candidature e-miage. | Visualisation des candidatures non traitées / en attente / validées ou refusées. |    Création / Envoi d’une candidature finalisée. |
+| | Modification de l’état d’une candidature.|  Visualisation / modification / suppression des fichiers uploader.|
+|  |Exportation d’une ou plusieurs candidatures aux formats (EXCEL / CSV).  |   Notification par mail de l’envoi d’une candidature.|
+|  |  |  Visualisation du traitement de la candidature du candidat.|
 
