@@ -1,11 +1,11 @@
 const fetch = require('node-fetch');
 
 //-----FONCTIONS DE TEST POUR LA PARTIE CANDIDATURE-------
-test('Simple test', async () => {
-  await fetch("http://localhost:3010/candidatures/getCandidatures/5caddb83e63ca70584c54647")
+test('Récupérer une candidature précise', async () => {
+  await fetch("http://localhost:3010/candidatures/getCandidatures/5c9a61adb05f0505ccc9ac0e")
   .then(res => res.json())
   .then(function(body) {
-    expect(body[0].candidat.nom).toBe("tete");
+    expect(body[0].candidat.nom).toBe("Roué");
   })
   .catch(err => {
     console.error(err);
@@ -14,21 +14,70 @@ test('Simple test', async () => {
 });
 
 
-test('Recuperer toutes les candidatures', async () => {
+/* ---- SCENARIO -----
+- Creation candidat
+- Creation candidature
+- Recuperation candidature
+- Suppression candidature
+- suppression candidat ?
+
+
+const testCandidat = {
+  nom : "testNom",
+  prenom : "testPrenom",
+  mail : "test@test.te",
+  mdp : "testmdp",
+  mdpConfirmation : "testmdp"
+};
+*/ 
+
+/*test('Creation candidat', async () => {
+  await fetch("http://localhost:3010/candidats/signupCandidat",{
+    method: "POST",
+    body: JSON.stringify(testCandidat),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.json())
+ /* .then(function(body) {
+   expect(body[0].candidat.nom).toBe("testNom");
+  })*/
+/*  .then(function(response) {
+    console.log(response.json());
+    return response.json();
+  })
+  .then(function(body) {
+   expect(body[0].nom).toBe("testNom");
+  })
+  .catch(err => {
+    console.error(err);
+  });console.log(testCandidat);
+});*/
+
+
+/*test('Recuperer toutes les candidatures', async () => {
   await fetch("http://localhost:3010/candidatures/getAllCandidatures")
   .then(res => res.json())
   .then(function(body) {
-   // expect(body[0].candidat.nom).toBe("tete");
+   expect(body[0].candidat.nom);
   })
   .catch(err => {
     console.error(err);
     alert("error !");
   });
-});
+});*/
 
+/*
 
 test('Ajouter une nouvelle candidature', async () => {
-  await fetch("http://localhost:3010/candidatures/newCandidature")
+  await fetch("http://localhost:3010/candidatures/newCandidature", {
+    method: "POST",
+    body: JSON.stringify(newCandidat),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
   .then(res => res.json())
   .then(function(body) {
    // expect(body[0].candidat.nom).toBe("tete");
@@ -127,3 +176,5 @@ test('recup password admin', async () => {
     alert("error !");
   });
 });
+
+*/
