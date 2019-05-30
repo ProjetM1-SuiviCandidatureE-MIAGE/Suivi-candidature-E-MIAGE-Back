@@ -21,6 +21,20 @@ const fetch = require('node-fetch');
 - suppression candidat ?
 */
 
+const testCandidature =
+  {
+    "candidat": {
+        "nom": "test",
+        "prenom": "test",
+        "mail": "test@toto.to",
+        "mdp": ""
+    },
+    "autresFichier": [],
+    "etat": "non traitée",
+    "commentaire": "",
+    "date": "2019-03-29T08:23:52.372Z",
+};
+
 function testCandidat(){
   const testCandidat = {
     nom : "testNom",
@@ -44,8 +58,15 @@ test('Creation candidat test', () => {
 });
 
 //ne fonctionne pas
+/*
 test('Creation candidat', async () => {
-  fetch("http://localhost:3010/candidats/signupCandidat/test")
+  fetch("http://localhost:3010/candidats/signupCandidat",{
+    method: "POST",
+    body: JSON.stringify(testCandidat()),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
   .then(res => res.data)
   .catch(err => {
     console.error(err);
@@ -56,7 +77,7 @@ test('Creation candidat', async () => {
     expect(data.name).toEqual('Roué Tanguy');
   });
   })
-  
+  */
 
 
 
@@ -80,7 +101,6 @@ test('Creation candidat', async () => {
   })
   .catch(err => {
     console.error(err);
-<<<<<<< HEAD
     alert("error !");
   });
 });
@@ -96,9 +116,6 @@ test('Récupérer une candidature précise', async () => {
     console.error(err);
     alert("error !");
   });
-=======
-  });console.log(testCandidat);
->>>>>>> de1c8c68a8cae68de63f5475b1d2790dec1b6989
 });
 
 
@@ -114,12 +131,12 @@ test('Récupérer une candidature précise', async () => {
   });
 });*/
 
-/*
+
 
 test('Ajouter une nouvelle candidature', async () => {
   await fetch("http://localhost:3010/candidatures/newCandidature", {
     method: "POST",
-    body: JSON.stringify(newCandidat),
+    body: JSON.stringify(testCandidature),
     headers: {
       "Content-Type": "application/json"
     }
@@ -133,7 +150,7 @@ test('Ajouter une nouvelle candidature', async () => {
     alert("error !");
   });
 });
-
+/*
 //-----FONCTIONS DE TEST POUR LA PARTIE CANDIDAT-------
 
 test('Afficher les candidats', async () => {
