@@ -2,10 +2,10 @@ const fetch = require('node-fetch');
 
 //-----FONCTIONS DE TEST POUR LA PARTIE CANDIDATURE-------
 test('Récupérer une candidature précise', async () => {
-  await fetch("http://localhost:3010/candidatures/getCandidatures/5c9a61adb05f0505ccc9ac0e")
+  await fetch("http://localhost:3010/candidatures/getCandidatures/5ce2d1e5e4d0e43450f043a9")
   .then(res => res.json())
   .then(function(body) {
-    expect(body[0].candidat.nom).toBe("Roué");
+    expect(body[0].candidat.nom).toBe("random1");
   })
   .catch(err => {
     console.error(err);
@@ -52,7 +52,6 @@ const testCandidat = {
   })
   .catch(err => {
     console.error(err);
-<<<<<<< HEAD
     alert("error !");
   });
 });
@@ -69,10 +68,6 @@ test('Récupérer une candidature précise', async () => {
     alert("error !");
   });
 });
-=======
-  });console.log(testCandidat);
-});*/
->>>>>>> 221d9043ad6af6738207800ea36a4422f2eb96c0
 
 
 /*test('Recuperer toutes les candidatures', async () => {

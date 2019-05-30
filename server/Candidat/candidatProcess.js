@@ -158,14 +158,22 @@ function signupCandidat(req, res) {
 }
 
 // -- UPDATE
-async function editCandidat(newInfo,id) {
+async function editCandidat(newInfo,mailArg) {
 
-  return await Candidat.updateOne({_id : id}, {
+  return await Candidat.updateOne({mail : mailArg}, {
     $set :{"nom" : newInfo.nom,
           "prenom" : newInfo.prenom,
           "mail" : newInfo.mail        
   }});
 };
+
+async function editPassword(newPsw,id) {
+
+      return await Candidat.updateOne({mail : id}, {
+        $set :{"mdp" : bcrypt.hashSync(newPsw, salt)}
+      });
+    
+}
 
 // --------Edit password ---------
 /*
@@ -182,7 +190,7 @@ async function editPassword(currentPsw, newPsw,id) {
       $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
     }});
   });
-};*/
+};
 
 async function editPassword(currentPsw, newPsw,id) {
 
@@ -198,7 +206,7 @@ async function editPassword(currentPsw, newPsw,id) {
     }});
   });
 };
-
+*/
 
 
 
