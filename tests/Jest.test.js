@@ -1,17 +1,16 @@
 const fetch = require('node-fetch');
-
 //-----FONCTIONS DE TEST POUR LA PARTIE CANDIDATURE-------
-test('Récupérer une candidature précise', async () => {
+/*test('Récupérer une candidature précise', async () => {
   await fetch("http://localhost:3010/candidatures/getCandidatures/5c9a61adb05f0505ccc9ac0e")
   .then(res => res.json())
   .then(function(body) {
-    expect(body[0].candidat.nom).toBe("Roué");
+    expect(body[0].candidat.nom).toBe("random1");
   })
   .catch(err => {
     console.error(err);
     alert("error !");
   });
-});
+});*/
 
 
 /* ---- SCENARIO -----
@@ -20,19 +19,48 @@ test('Récupérer une candidature précise', async () => {
 - Recuperation candidature
 - Suppression candidature
 - suppression candidat ?
+*/
+
+function testCandidat(){
+  const testCandidat = {
+    nom : "testNom",
+    prenom : "testPrenom",
+    mail : "test@test.te",
+    mdp : "testmdp",
+    mdpConfirmation : "testmdp"
+  };
+  return testCandidat;
+}
+
+test('Creation candidat test', () => {
+  expect(testCandidat()).toEqual({
+    nom : 'testNom',
+    prenom : 'testPrenom',
+    mail : "test@test.te",
+    mdp : "testmdp",
+    mdpConfirmation : "testmdp"
+  });
+
+});
+
+//ne fonctionne pas
+test('Creation candidat', async () => {
+  fetch("http://localhost:3010/candidats/signupCandidat/test")
+  .then(res => res.data)
+  .catch(err => {
+    console.error(err);
+    alert("error !");
+  })
+  //expect.assertions("test");
+  return await fetch().then(data => {
+    expect(data.name).toEqual('Roué Tanguy');
+  });
+  })
+  
 
 
-const testCandidat = {
-  nom : "testNom",
-  prenom : "testPrenom",
-  mail : "test@test.te",
-  mdp : "testmdp",
-  mdpConfirmation : "testmdp"
-};
-*/ 
 
-/*test('Creation candidat', async () => {
-  await fetch("http://localhost:3010/candidats/signupCandidat",{
+/*  await fetch("http://localhost:3010/candidats/signupCandidat",{
     method: "POST",
     body: JSON.stringify(testCandidat),
     headers: {
@@ -40,7 +68,7 @@ const testCandidat = {
     }
   })
   .then(res => res.json())
- /* .then(function(body) {
+  .then(function(body) {
    expect(body[0].candidat.nom).toBe("testNom");
   })*/
 /*  .then(function(response) {
@@ -52,8 +80,26 @@ const testCandidat = {
   })
   .catch(err => {
     console.error(err);
+<<<<<<< HEAD
+    alert("error !");
+  });
+});
+
+//-----FONCTIONS DE TEST POUR LA PARTIE CANDIDATURE-------
+test('Récupérer une candidature précise', async () => {
+  await fetch("http://localhost:3010/candidatures/getCandidatures/5ce2d1e5e4d0e43450f043a9")
+  .then(res => res.json())
+  .then(function(body) {
+    expect(body[0].nom).toBe("random");
+  })
+  .catch(err => {
+    console.error(err);
+    alert("error !");
+  });
+=======
   });console.log(testCandidat);
-});*/
+>>>>>>> de1c8c68a8cae68de63f5475b1d2790dec1b6989
+});
 
 
 /*test('Recuperer toutes les candidatures', async () => {

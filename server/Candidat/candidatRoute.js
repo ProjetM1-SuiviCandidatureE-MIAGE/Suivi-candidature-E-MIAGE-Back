@@ -11,10 +11,10 @@ router.post("/login", candidatAction.checkAuth);
 router.get("/candidat", candidatAction.getCandidat);
 
 //--edit candidat
-router.put("/editCandidat/:id", candidatAction.editCandidat);
+router.put("/editCandidat/:mail", candidatAction.editCandidat);
 
 //--edit password candidat
-router.put("/editPassword/:id",candidatAction.editPassword);
+router.put("/editPassword/:mail",candidatAction.editPassword);
 
 //-- recup password
 router.put("/recupPassword/:id",candidatAction.recupPassword);

@@ -28,7 +28,7 @@ function editCandidat(req, res) {
   try{
     //Verification des nouvelles valeurs
     if (body.nom === "" || body.prenom === "" || body.mail === "") throw "Une valeur est nulle";
-    CandidatProcess.editCandidat(body,req.params.id).then((callback) => {
+    CandidatProcess.editCandidat(body,req.params.mail).then((callback) => {
       res.send(callback);
     });
   }catch(err){
@@ -40,11 +40,13 @@ function editCandidat(req, res) {
 function editPassword(req,res){
 
   try{
-  CandidatProcess.editPassword(req.body.password,req.body.newPassword,req.params.id).then((callback) => {
+  CandidatProcess.editPassword(req.body.newPassword,req.params.mail).then((callback) => {
+    console.log("retour : " + callback.ok);
     res.send(callback);
   });
 
   }catch(err){
+    console.log("catch : " + err);
     res.send(err);
   }
 }
