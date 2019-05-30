@@ -40,11 +40,13 @@ function editCandidat(req, res) {
 function editPassword(req,res){
 
   try{
-  CandidatProcess.editPassword(req.body.password,req.body.newPassword,req.params.id).then((callback) => {
+  CandidatProcess.editPassword(req.body.newPassword,req.params.id).then((callback) => {
+    console.log("retour : " + callback.ok);
     res.send(callback);
   });
 
   }catch(err){
+    console.log("catch : " + err);
     res.send(err);
   }
 }

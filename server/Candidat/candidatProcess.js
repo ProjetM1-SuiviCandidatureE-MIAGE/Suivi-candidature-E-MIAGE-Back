@@ -168,11 +168,29 @@ async function editCandidat(newInfo,id) {
 };
 
 // --------Edit password ---------
+/*
+async function editPassword(currentPsw, newPsw,id) {
+
+    await Candidat.findOne({ _id: id }, async function(err, candidat) {
+    if( !candidat.authenticate(currentPsw)){
+      console.log("console : Mauvais mot de passe");
+      return ({ text: "Mauvais mot de passe" });
+    } 
+    if(newPsw.trim()==="") return "Nouveau mot de passe vide !";
+    console.log("set psw");
+    return await Candidat.updateOne({_id : id}, {
+      $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
+    }});
+  });
+};*/
 
 async function editPassword(currentPsw, newPsw,id) {
 
-  Candidat.findOne({ _id: id }, async function(err, candidat) {
-    if(!candidat.authenticate(currentPsw)) return "Mauvais mot de passe";
+  await Candidat.findOne({ _id: id }, async function(err, candidat) {
+    if( !candidat.authenticate(currentPsw)){
+      console.log("console : Mauvais mot de passe");
+      return ({ text: "Mauvais mot de passe" });
+    } 
     if(newPsw.trim()==="") return "Nouveau mot de passe vide !";
     console.log("set psw");
     return await Candidat.updateOne({_id : id}, {
@@ -180,6 +198,10 @@ async function editPassword(currentPsw, newPsw,id) {
     }});
   });
 };
+
+
+
+
 
 // ------ Recuperation de mdp ----
 

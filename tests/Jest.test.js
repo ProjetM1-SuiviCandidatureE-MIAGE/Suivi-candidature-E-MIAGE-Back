@@ -40,10 +40,10 @@ test('Creation candidat', async () => {
 
 //-----FONCTIONS DE TEST POUR LA PARTIE CANDIDATURE-------
 test('Récupérer une candidature précise', async () => {
-  await fetch("http://localhost:3010/candidatures/getCandidatures/5caddb83e63ca70584c54647")
+  await fetch("http://localhost:3010/candidatures/getCandidatures/5ce2d1e5e4d0e43450f043a9")
   .then(res => res.json())
   .then(function(body) {
-    expect(body[0].candidat.nom).toBe("tete");
+    expect(body[0].nom).toBe("random");
   })
   .catch(err => {
     console.error(err);
