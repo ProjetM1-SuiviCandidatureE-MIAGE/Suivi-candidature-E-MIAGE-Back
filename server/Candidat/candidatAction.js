@@ -55,7 +55,7 @@ function editPassword(req,res){
 function recupPassword(req,res){
 
   try{
-  CandidatProcess.recupPassword(req.params.id).then((callback) => {
+  CandidatProcess.recupPassword(req.params.mail).then((callback) => {
     res.send(callback);
   });
   }catch(err){

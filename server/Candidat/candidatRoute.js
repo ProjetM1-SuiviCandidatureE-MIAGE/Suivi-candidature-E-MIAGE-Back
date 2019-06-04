@@ -17,6 +17,6 @@ router.put("/editCandidat/:mail", candidatAction.editCandidat);
 router.put("/editPassword/:mail",candidatAction.editPassword);
 
 //-- recup password
-router.put("/recupPassword/:id",candidatAction.recupPassword);
+router.put("/recupPassword/:mail",candidatAction.recupPassword);
 
 module.exports = router;

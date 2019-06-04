@@ -167,9 +167,9 @@ async function editCandidat(newInfo,mailArg) {
   }});
 };
 
-async function editPassword(newPsw,id) {
+async function editPassword(newPsw,mailArg) {
 
-      return await Candidat.updateOne({mail : id}, {
+      return await Candidat.updateOne({mail : mailArg}, {
         $set :{"mdp" : bcrypt.hashSync(newPsw, salt)}
       });
     
@@ -213,10 +213,10 @@ async function editPassword(currentPsw, newPsw,id) {
 
 // ------ Recuperation de mdp ----
 
-async function recupPassword(id) {
+async function recupPassword(mailArg) {
 
   //Recuperation du mail du candidat
-  Candidat.findOne({ _id: id }, async function(err, candidat) {
+  Candidat.findOne({ mail: mailArg }, async function(err, candidat) {
     const mail = candidat.mail;
 
     const newPsw = generator.generate({
@@ -224,7 +224,7 @@ async function recupPassword(id) {
       numbers: true
     });
     
-    await Candidat.updateOne({_id : id}, {
+    await Candidat.updateOne({mail : mailArg}, {
       $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
     }});
 
