@@ -37,13 +37,23 @@ function editCandidat(req, res) {
 };
 
 // -----Update du mot de passe d'un candidat
-function editPassword(req,res){
+async function editPassword(req,res){
 
   try{
-  CandidatProcess.editPassword(req.body.newPassword,req.params.mail).then((callback) => {
-    console.log("retour : " + callback.ok);
-    res.send(callback);
-  });
+  const response = await CandidatProcess.verifPassword(req.body.password,req.params.mail);
+
+    if(response===false){
+      console.log("Wrong psw");
+      res.send(response);
+    }
+
+    else if (req.body.newPassword.trim()==="") res.send({text: "Mot de passe vide"})
+
+    else 
+      CandidatProcess.editPassword(req.body.newPassword,req.params.mail).then((callback) => {
+        console.log("retour : " + callback.ok);
+        res.send(callback);
+      });
 
   }catch(err){
     console.log("catch : " + err);
@@ -55,7 +65,7 @@ function editPassword(req,res){
 function recupPassword(req,res){
 
   try{
-  CandidatProcess.recupPassword(req.params.id).then((callback) => {
+  CandidatProcess.recupPassword(req.params.mail).then((callback) => {
     res.send(callback);
   });
   }catch(err){
