@@ -175,6 +175,18 @@ async function editPassword(newPsw,mailArg) {
     
 }
 
+async function verifPassword(currentPsw,mailArg) {
+  
+  const candidat = await Candidat.findOne({ mail : mailArg });
+
+    if( !candidat.authenticate(currentPsw)){
+      console.log("console : Mauvais mot de passe");
+      return false
+    } 
+    else
+      return true;
+}
+
 // --------Edit password ---------
 /*
 async function editPassword(currentPsw, newPsw,id) {
@@ -272,3 +284,4 @@ exports.signupCandidat = signupCandidat;
 exports.editCandidat = editCandidat;
 exports.editPassword = editPassword ;
 exports.recupPassword = recupPassword;
+exports.verifPassword = verifPassword;
