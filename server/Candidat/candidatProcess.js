@@ -180,7 +180,6 @@ async function verifPassword(currentPsw,mailArg) {
   const candidat = await Candidat.findOne({ mail : mailArg });
 
     if( !candidat.authenticate(currentPsw)){
-      console.log("console : Mauvais mot de passe");
       return false
     } 
     else
