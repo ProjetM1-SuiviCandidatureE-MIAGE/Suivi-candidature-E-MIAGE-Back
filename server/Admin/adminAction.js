@@ -25,14 +25,23 @@ function editAdmin(req, res) {
 };
 
 // -----Update du mot de passe d'un admin
-function editPassword(req,res){
+async function editPassword(req,res){
 
   try{
-  AdminProcess.editPassword(req.body.password,req.body.newPassword,req.params.id).then((callback) => {
-    res.send(callback);
-  });
+    const response = await AdminProcess.verifPassword(req.body.password,req.params.id);
 
+    if(response===false){
+      res.status(530).send({text : "Mauvais mot de passe"});
+    }
+
+    else if (req.body.newPassword.trim()==="") res.status(530).send({text: "Mot de passe vide"})
+
+    else
+      AdminProcess.editPassword(req.body.newPassword,req.params.id).then((callback) => {
+        res.send(callback);
+      });
   }catch(err){
+
     res.send(err);
   }
 }
@@ -41,9 +50,9 @@ function editPassword(req,res){
 function recupPassword(req,res){
 
   try{
-  AdminProcess.recupPassword(req.params.id).then((callback) => {
-    res.send(callback);
-  });
+    AdminProcess.recupPassword(req.params.mail).then((callback) => {
+      res.send(callback);
+    });
   }catch(err){
     res.send(err);
   }

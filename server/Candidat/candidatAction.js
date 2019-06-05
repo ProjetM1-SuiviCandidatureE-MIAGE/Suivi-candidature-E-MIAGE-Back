@@ -28,7 +28,7 @@ function editCandidat(req, res) {
   try{
     //Verification des nouvelles valeurs
     if (body.nom === "" || body.prenom === "" || body.mail === "") throw "Une valeur est nulle";
-    CandidatProcess.editCandidat(body,req.params.mail).then((callback) => {
+    CandidatProcess.editCandidat(body,req.params.id).then((callback) => {
       res.send(callback);
     });
   }catch(err){
@@ -40,7 +40,7 @@ function editCandidat(req, res) {
 async function editPassword(req,res){
 
   try{
-  const response = await CandidatProcess.verifPassword(req.body.password,req.params.mail);
+    const response = await CandidatProcess.verifPassword(req.body.password,req.params.id);
 
     if(response===false){
       res.status(530).send({text : "Mauvais mot de passe"});
@@ -49,7 +49,7 @@ async function editPassword(req,res){
     else if (req.body.newPassword.trim()==="") res.status(530).send({text: "Mot de passe vide"})
 
     else 
-      CandidatProcess.editPassword(req.body.newPassword,req.params.mail).then((callback) => {
+      CandidatProcess.editPassword(req.body.newPassword,req.params.id).then((callback) => {
         res.send(callback);
       });
 
@@ -62,9 +62,9 @@ async function editPassword(req,res){
 function recupPassword(req,res){
 
   try{
-  CandidatProcess.recupPassword(req.params.mail).then((callback) => {
-    res.send(callback);
-  });
+    CandidatProcess.recupPassword(req.params.mail).then((callback) => {
+      res.send(callback);
+    });
   }catch(err){
     res.send(err);
   }

@@ -158,26 +158,27 @@ function signupCandidat(req, res) {
 }
 
 // -- UPDATE
-async function editCandidat(newInfo,mailArg) {
+async function editCandidat(newInfo,idArg) {
 
-  return await Candidat.updateOne({mail : mailArg}, {
+  return await Candidat.updateOne({_id : idArg}, {
     $set :{"nom" : newInfo.nom,
           "prenom" : newInfo.prenom,
           "mail" : newInfo.mail        
   }});
 };
 
-async function editPassword(newPsw,mailArg) {
+// --------Edit password ---------
+async function editPassword(newPsw,idArg) {
 
-      return await Candidat.updateOne({mail : mailArg}, {
+      return await Candidat.updateOne({_id : idArg}, {
         $set :{"mdp" : bcrypt.hashSync(newPsw, salt)}
       });
     
 }
 
-async function verifPassword(currentPsw,mailArg) {
+async function verifPassword(currentPsw,idArg) {
   
-  const candidat = await Candidat.findOne({ mail : mailArg });
+  const candidat = await Candidat.findOne({ _id : idArg });
 
     if( !candidat.authenticate(currentPsw)){
       return false
@@ -186,44 +187,7 @@ async function verifPassword(currentPsw,mailArg) {
       return true;
 }
 
-// --------Edit password ---------
-/*
-async function editPassword(currentPsw, newPsw,id) {
-
-    await Candidat.findOne({ _id: id }, async function(err, candidat) {
-    if( !candidat.authenticate(currentPsw)){
-      console.log("console : Mauvais mot de passe");
-      return ({ text: "Mauvais mot de passe" });
-    } 
-    if(newPsw.trim()==="") return "Nouveau mot de passe vide !";
-    console.log("set psw");
-    return await Candidat.updateOne({_id : id}, {
-      $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
-    }});
-  });
-};
-
-async function editPassword(currentPsw, newPsw,id) {
-
-  await Candidat.findOne({ _id: id }, async function(err, candidat) {
-    if( !candidat.authenticate(currentPsw)){
-      console.log("console : Mauvais mot de passe");
-      return ({ text: "Mauvais mot de passe" });
-    } 
-    if(newPsw.trim()==="") return "Nouveau mot de passe vide !";
-    console.log("set psw");
-    return await Candidat.updateOne({_id : id}, {
-      $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
-    }});
-  });
-};
-*/
-
-
-
-
 // ------ Recuperation de mdp ----
-
 async function recupPassword(mailArg) {
 
   //Recuperation du mail du candidat
@@ -249,34 +213,6 @@ async function recupPassword(mailArg) {
     );
   });
 };
-
-// FONCTION TEST JEANNE
-/*async function recupPassword(mail) {
-
-  //Recuperation du mail du candidat
-  Candidat.findOne({mail: mail},async function(err, candidat) {
-    const mail = candidat.mail;
-
-    const newPsw = generator.generate({
-      length: 10,
-      numbers: true
-    });
-    
-    await Candidat.updateOne({mail: mail}, {
-      $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
-    }});
-
-    mailFunction.sendMail(
-      {
-        "mail" : mail,
-        "sujet" : "Recuperation mot de passe",
-        "texte" : `Bonjour, <br>
-                  Voici votre mot de passe de récuperation :   ` + newPsw
-      }
-    );
-  });
-};*/
-
 
 exports.getCandidat = getCandidat;
 exports.signupCandidat = signupCandidat;

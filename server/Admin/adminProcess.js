@@ -45,7 +45,6 @@ auth.checkAuth = function(req, res, next) {
 
 // -- UPDATE
 async function editAdmin(newInfo,id) {
-  console.log(newInfo);
   return await Admin.updateOne({_id : id}, {
     $set :{"nom" : newInfo.nom,
           "prenom" : newInfo.prenom,
@@ -55,25 +54,30 @@ async function editAdmin(newInfo,id) {
 
 
 // --------Edit password ---------
+async function editPassword(newPsw,idArg) {
 
-async function editPassword(currentPsw, newPsw,id) {
+      return await Admin.updateOne({_id : idArg}, {
+        $set :{"mdp" : bcrypt.hashSync(newPsw, salt)}
+      });
+    
+}
 
-  Admin.findOne({ _id: id }, async function(err, admin) {
-    if(!admin.authenticate(currentPsw)) return "Mauvais mot de passe";
-    if(newPsw.trim()==="") return "Nouveau mot de passe vide !";
-    console.log("set psw");
-    return await Admin.updateOne({_id : id}, {
-      $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
-    }});
-  });
-};
+async function verifPassword(currentPsw,idArg) {
+  
+  const admin = await Admin.findOne({ _id : idArg });
+
+    if( !admin.authenticate(currentPsw)){
+      return false
+    } 
+    else
+      return true;
+}
 
 // ------ Recuperation de mdp ----
-
-async function recupPassword(id) {
+async function recupPassword(mailArg) {
 
   //Recuperation du mail du admin
-  Admin.findOne({ _id: id }, async function(err, admin) {
+  Admin.findOne({ mail: mailArg }, async function(err, admin) {
     const mail = admin.mail;
 
     const newPsw = generator.generate({
@@ -81,7 +85,7 @@ async function recupPassword(id) {
       numbers: true
     });
     
-    await Admin.updateOne({_id : id}, {
+    await Admin.updateOne({ mail: mailArg }, {
       $set :{"mdp" : bcrypt.hashSync(newPsw, salt)   
     }});
 
@@ -89,7 +93,7 @@ async function recupPassword(id) {
       {
         "mail" : mail,
         "sujet" : "Recuperation mot de passe",
-        "texte" : `Bonjour, <br>
+        "texte" : `Bonjour ${admin.prenom} ${admin.nom}, <br><br>
                   Voici votre mot de passe de récuperation :   ` + newPsw
       }
     );
@@ -97,5 +101,6 @@ async function recupPassword(id) {
 };
 
 exports.editAdmin = editAdmin;
+exports.verifPassword = verifPassword;
 exports.editPassword = editPassword ;
 exports.recupPassword = recupPassword;
