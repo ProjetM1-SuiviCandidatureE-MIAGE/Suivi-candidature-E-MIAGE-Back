@@ -63,6 +63,7 @@ function recupPassword(req,res){
 
   try{
     CandidatProcess.recupPassword(req.params.mail).then((callback) => {
+      console.log(callback);
       res.send(callback);
     });
   }catch(err){

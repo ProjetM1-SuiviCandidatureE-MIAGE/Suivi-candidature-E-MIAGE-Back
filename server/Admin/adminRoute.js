@@ -11,6 +11,6 @@ router.put("/editAdmin/:id", adminAction.editAdmin);
 router.put("/editPassword/:id",adminAction.editPassword);
 
 //-- recup password
-router.put("/recupPassword/:id",adminAction.recupPassword);
+router.put("/recupPassword/:mail",adminAction.recupPassword);
 
 module.exports = router;

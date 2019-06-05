@@ -51,6 +51,7 @@ function recupPassword(req,res){
 
   try{
     AdminProcess.recupPassword(req.params.mail).then((callback) => {
+      console.log(callback);
       res.send(callback);
     });
   }catch(err){

@@ -192,6 +192,9 @@ async function recupPassword(mailArg) {
 
   //Recuperation du mail du candidat
   Candidat.findOne({ mail: mailArg }, async function(err, candidat) {
+    if(candidat === null) {
+      return await {text : "Mail incorrect."};
+    }
     const mail = candidat.mail;
 
     const newPsw = generator.generate({

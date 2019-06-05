@@ -78,6 +78,9 @@ async function recupPassword(mailArg) {
 
   //Recuperation du mail du admin
   Admin.findOne({ mail: mailArg }, async function(err, admin) {
+    if(admin === null) {
+      return await {text : "Mail incorrect."};
+    }
     const mail = admin.mail;
 
     const newPsw = generator.generate({
