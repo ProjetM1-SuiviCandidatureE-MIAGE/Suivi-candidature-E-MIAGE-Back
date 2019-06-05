@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const adminFonction = require("../Admin/adminProcess");
 
 
 
@@ -32,5 +33,20 @@ async function sendMail (body) {
       }
     });
   }
+
+  async function sendMailAllAdmins(sujet,texte){
+    const admins = await adminFonction.getAllAdmins();
+    console.log(admins);
+    admins.forEach(element => {
+      sendMail(
+        {
+          mail : element.mail,
+          sujet : sujet,
+          texte : texte
+        })
+    });
+    return ({ text: "succès, mails envoyés aux admins" }); 
+  }
   
   exports.sendMail = sendMail;
+  exports.sendMailAllAdmins = sendMailAllAdmins;
