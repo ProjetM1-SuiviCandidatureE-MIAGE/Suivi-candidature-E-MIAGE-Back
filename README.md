@@ -380,6 +380,6 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 | Inscription/connexion aux espaces enseignant/candidatures.|Modification de ses informations personnelles.|   Création d’une candidature « brouillon » non finalisée. |
 | Notification d’un mail d’inscription au site de candidature e-miage. | Visualisation des candidatures non traitées / en attente / validées ou refusées. |    Création / Envoi d’une candidature finalisée. |
 | | Modification de l’état d’une candidature.|  Visualisation / modification / suppression des fichiers uploader.|
-|  |Exportation d’une ou plusieurs candidatures aux formats (EXCEL / CSV).  |   Notification par mail de l’envoi d’une candidature.|
+|  |Exportation d’une ou plusieurs candidatures aux formats EXCEL.  |   Notification par mail de l’envoi d’une candidature.|
 |  |  |  Visualisation du traitement de la candidature du candidat.|
 
