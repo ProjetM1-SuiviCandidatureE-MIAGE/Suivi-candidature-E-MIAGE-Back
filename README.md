@@ -52,6 +52,7 @@ Technologies côté client :
 - React JS : c’est une bibliothèque libre en JavaScript pour construire des interfaces utilisateurs en single-page.
 
 |  Les composants pour le design du front  | Les composants déjà construits  |Les composants pour le routage du site |
+| :---------------: |:---------------:|
 | @material-ui  |react-export-excel (pour télécharger les candidatures en excel)|react-router-dom (react-dom + react-router)|
 | reactstrap (bootstrap 4) |filepond (pour upload les fichiers)||
 |mdbreact (bootstrap 4 + Material UI) |filepond-plugin-file-validate-type||
