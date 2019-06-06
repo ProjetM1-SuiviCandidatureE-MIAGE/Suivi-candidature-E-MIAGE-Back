@@ -7,6 +7,7 @@ Pour lancer les tests :
 
 
 					
+					
 # Suivi-candidature-E-MIAGE
 							Cahier des Charges :
 							projet  site de candidature E-MIAGE
@@ -233,7 +234,7 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 3. Le pied de page comporte les mentions légales du site.
 
 		II/III/LE DIAGRAMME DE CLASSE
-![enter image description here](https://lh3.googleusercontent.com/JheKqPWI-RSga7IHPQb2_Cb-wCVLYjHlT72X9s8uaM4ZjOnEFafShyh9GJ1xDbk4dqq0GpEe5_2s)
+![enter image description here](https://lh3.googleusercontent.com/kZeqXznHmYhgggwDwOddWCLI8L8IAr1AgWtkrZZvVzsLJcf0T_pRmndA0RJsGPp_camvvbXW-uxJ)
 
 	II/IV/JSON
 <pre><code>Fichier JSON pour la BDD</code></pre>
@@ -382,4 +383,3 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 | | Modification de l’état d’une candidature.|  Visualisation / modification / suppression des fichiers uploader.|
 |  |Exportation d’une ou plusieurs candidatures aux formats EXCEL.  |   Notification par mail de l’envoi d’une candidature.|
 |  |  |  Visualisation du traitement de la candidature du candidat.|
-
