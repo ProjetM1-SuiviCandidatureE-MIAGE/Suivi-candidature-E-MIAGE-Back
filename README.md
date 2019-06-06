@@ -6,6 +6,8 @@ Pour lancer les tests :
 
 
 
+					
+					
 # Suivi-candidature-E-MIAGE
 							Cahier des Charges :
 							projet  site de candidature E-MIAGE
@@ -159,7 +161,8 @@ Technologies côté client :
 	Interfaces graphique en Wireframe:
 	A. Page d’accueil du site de candidature e-MIAGE:
 
-![enter image description here](https://lh3.googleusercontent.com/oJ0bubrXhWhjw0ZeLbGBq8QlHfCaVy4PQ4to2M_L9deUZcfdYp86ite1bRvkyf4j6sRqIFgnQxCa)
+![
+](https://lh3.googleusercontent.com/fKzD4HYnBlcLpaXrhTfTSkeX5bz-y-HFq3odSgEJkQ_2mxWNPqDeQ2sQZBQvaVEfHkduYDpSoxqp "Page d'accueil")
 
 
 1.  L’entête est constituée d’un menu horizontal en position fixe avec l’espace de connexion pour les administrateurs et les candidats. Et un espace inscription uniquement pour les candidats. Il s’agit d’une partie réalisée en single page
@@ -168,8 +171,8 @@ Technologies côté client :
 3. Le pied de page comporte les mentions légales du site.
 
 		B.PAGE D'INSCRIPTION
-	![enter image description here](https://lh3.googleusercontent.com/bBny9O2F9NhLUD2ZvXmU07NHTdkJydQ9QeGG4c6hNb3NUNb8E9FtdbbwOygv-RZXJSBSXsnNRs4I)
-
+	
+![enter image description here](https://lh3.googleusercontent.com/cXJ7-AGgHnAWRIei5moO2nbjvWWqTgt7hKj6ZFSjZV2FzDN9kqewnO2tOLo4-eKHDPBSPBz2NG7s)
 
 Lorsqu’on clique sur le bouton “Je n’ai pas de compte” de la page connexion, le système redirige l’utilisateur sur la page inscription. La page d’inscription demande les renseignements suivants : nom, prénom, email et mot de passe.
 
@@ -178,7 +181,7 @@ Possibilité de se rediriger vers la page de connexion à partir de la page d’
 - Possibilité de se rediriger vers la page de connexion à partir de la page d’inscription.
 
 		C.Connexion d’un étudiant ou d’un Enseignant :
-	![enter image description here](https://lh3.googleusercontent.com/v75jL3ROWlNo3mudR9KQczfSh_Ro_xpr7Aj43C_TGmt77uQ0p4wWvNHcAOHu1SnH9U5wg7n7KMmo)
+	![enter image description here](https://lh3.googleusercontent.com/dp8GxCUU2zF_rdgYOhqeuUsjOPeHciQbeqeUfwTCA6IbdXgeLqGTNhyCA_5_0_edc4pmERWaN1QZ)
 	
 
 Lorsqu’un utilisateur clique sur l’espace candidat ou l’espace administrateur, la page de connexion s’affiche, elle demande le mail et le mot de passe de la personne pour se connecter après vérification.
@@ -193,7 +196,7 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 
 		D. Espace candidature :
 	
-	![enter image description here](https://lh3.googleusercontent.com/G3Mjlyja5TUff0ChB5DEh0_rJqEUeAotwMkNwUlwQL-PNY3vJonqk0FeU7AShUAuzHRbnpFg92zQ)
+	![enter image description here](https://lh3.googleusercontent.com/8CHc6kECg5JfNsGtiQMMigXj4PsiHWZ0aDIsNzcXG4J9wbPSNMOqAEz5M74DZTOzlf7riYzflOBo)
 
 1. L’entête comprend un bouton de déconnexion du candidat.
 
@@ -210,7 +213,7 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 		
 		E.Espace Enseignant :
 	
-![enter image description here](https://lh3.googleusercontent.com/P3wJOwLWJGB7LVWZp5vNPyqXyd1eU6VeTR0LQazwpKlmfC5RIWsOHY490TgJi6K2TH_eXIqnWCcd)
+![enter image description here](https://lh3.googleusercontent.com/SsWtLSXGwXQ07mtFAbyC-UKhcbpx1KSLs9mVA6jEt17xPeu1nGS0MsCznrMR-NHYMh3a8X2a5OvU)
 
 1. L’entête comprend un bouton de déconnexion de l’enseignant.
 
@@ -231,7 +234,7 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 3. Le pied de page comporte les mentions légales du site.
 
 		II/III/LE DIAGRAMME DE CLASSE
-![enter image description here](https://lh3.googleusercontent.com/JheKqPWI-RSga7IHPQb2_Cb-wCVLYjHlT72X9s8uaM4ZjOnEFafShyh9GJ1xDbk4dqq0GpEe5_2s)
+![enter image description here](https://lh3.googleusercontent.com/kZeqXznHmYhgggwDwOddWCLI8L8IAr1AgWtkrZZvVzsLJcf0T_pRmndA0RJsGPp_camvvbXW-uxJ)
 
 	II/IV/JSON
 <pre><code>Fichier JSON pour la BDD</code></pre>
@@ -378,6 +381,5 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 | Inscription/connexion aux espaces enseignant/candidatures.|Modification de ses informations personnelles.|   Création d’une candidature « brouillon » non finalisée. |
 | Notification d’un mail d’inscription au site de candidature e-miage. | Visualisation des candidatures non traitées / en attente / validées ou refusées. |    Création / Envoi d’une candidature finalisée. |
 | | Modification de l’état d’une candidature.|  Visualisation / modification / suppression des fichiers uploader.|
-|  |Exportation d’une ou plusieurs candidatures aux formats (EXCEL / CSV).  |   Notification par mail de l’envoi d’une candidature.|
+|  |Exportation d’une ou plusieurs candidatures aux formats EXCEL.  |   Notification par mail de l’envoi d’une candidature.|
 |  |  |  Visualisation du traitement de la candidature du candidat.|
-
