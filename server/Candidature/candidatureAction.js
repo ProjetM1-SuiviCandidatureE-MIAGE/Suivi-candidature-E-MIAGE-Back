@@ -1,4 +1,5 @@
 const CandidatureProcess = require("./candidatureProcess");
+const mailFonction = require("./MailProcess");
 
 //--ajouter une nouvelle candidature
 function newCandidature(req, res) {
@@ -6,6 +7,11 @@ function newCandidature(req, res) {
  try{
   CandidatureProcess.newCandidature(req).then((callback) =>{
     console.log("creation candidature passe par le process" + callback);
+
+    const texteMailNewCandidature = `Bonjour, <br>
+    Une nouvelle candidature a été créée par  ` + req.body.candidat.nom + "   "+ req.body.candidat.prenom ;
+    
+    mailFonction.sendMailAllAdmins("Nouvelle candidature",texteMailNewCandidature)
     res.send(callback);
   });
  }catch(err){

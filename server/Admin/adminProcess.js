@@ -103,7 +103,13 @@ async function recupPassword(mailArg) {
   });
 };
 
+//--récupérer tous les admins
+async function getAllAdmins(){
+  return await Admin.find();
+};
+
 exports.editAdmin = editAdmin;
 exports.verifPassword = verifPassword;
 exports.editPassword = editPassword ;
 exports.recupPassword = recupPassword;
+exports.getAllAdmins = getAllAdmins;
