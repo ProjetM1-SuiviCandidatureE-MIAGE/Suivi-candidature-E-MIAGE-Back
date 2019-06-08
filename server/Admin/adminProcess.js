@@ -197,6 +197,7 @@ async function getAllAdmins(){
 };
 
 exports.editAdmin = editAdmin;
+exports.signupAdmin = signupAdmin;
 exports.verifPassword = verifPassword;
 exports.editPassword = editPassword ;
 exports.recupPassword = recupPassword;
