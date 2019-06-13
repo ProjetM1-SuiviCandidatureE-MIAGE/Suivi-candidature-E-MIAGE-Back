@@ -78,21 +78,12 @@ function signupCandidat(req, res) {
     });
   }
 
-  
   //---------Verification du mail--------
   else if (!re.test(req.body.mail)){
     res.status(401).json({
       text: "Le mail n'est pas correct."
     });
-  }
-
-  /*else if (Candidat.validateEmail(req.mail)){
-    res.status(401).json({
-      text: "Le mail n'est pas correct."
-    });
-  }*/
-  else {
-    
+  } else {
     const candidat = {
       nom: req.body.nom,
       prenom: req.body.prenom,

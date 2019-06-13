@@ -5,6 +5,11 @@ auth.checkAuth = function(req, res, next) {
   AdminProcess.checkAuth(req, res);
 };
 
+// --INSCRIPTION Admin
+function signupAdmin(req, res) {
+ AdminProcess.signupAdmin(req, res);
+}
+
 //--Update d'un admin
 function editAdmin(req, res) {
   const body = req.body ;
@@ -59,6 +64,7 @@ function recupPassword(req,res){
   }
 }
 
+exports.signupAdmin = signupAdmin;
 exports.editAdmin = editAdmin;
 exports.editPassword = editPassword;
 exports.recupPassword = recupPassword;

@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const adminAction = require("./adminAction");
 
+//--inscription
+router.post("/signup", adminAction.signupAdmin);
+
 //--Connexion
 router.post("/login", adminAction.checkAuth);
 

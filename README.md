@@ -38,11 +38,26 @@ Technologies côté serveur :
 
 - Node JS : c’est une plateforme libre et événementielle en JavaScript orientée vers les applications réseau qui doivent pouvoir monter en charge.
 
-- Express : c’est un Framework pour construire des applications web basées sur Node.js
+|  Frameworks | modules  | 
+| :---------------: |:---------------:|
+|mongoose : sert de passerelle entre le server Node.js et le serveur MongoDB |NodeMailer : module pour envoyer des mails| 
+|Express : c’est un Framework pour construire des applications web basées sur Node.js |bcrypt : module offrant des fonctions liées au cryptage de chaînes de caractère|
+|JEST : Framework pour les tests unitaires.|joi : module permettant de valider les données à travers le schéma.|
+| |body-parser : middleware associé à Express permettant d’exporter les body des messages reçus.|
+| |generate-password : Permet de générer un mot de passe aléatoire d’une longueur définie|
+
 
 Technologies côté client :
 
 - React JS : c’est une bibliothèque libre en JavaScript pour construire des interfaces utilisateurs en single-page.
+
+|  Les composants pour le design du front  | Les composants déjà construits  |Les composants pour le routage du site |
+| :---------------: |:---------------:|:---------------:|
+| @material-ui  |react-export-excel (pour télécharger les candidatures en excel)|react-router-dom (react-dom + react-router)|
+| reactstrap (bootstrap 4) |filepond (pour upload les fichiers)||
+|mdbreact (bootstrap 4 + Material UI) |filepond-plugin-file-validate-type||
+| |filepond-plugin-file-validate-size||
+| |mui-datatables (pour les tableaux contenant les candidatures||
 
 
 **II/ Architecture du projet :**
