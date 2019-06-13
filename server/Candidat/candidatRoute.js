@@ -8,7 +8,7 @@ router.post("/signup", candidatAction.signupCandidat);
 router.post("/login", candidatAction.checkAuth);
 
 //--afficher les candidatures
-router.get("/candidat", candidatAction.getCandidat);
+router.get("/candidat", candidatAction.getCandidat); // Non utilisé ?
 
 //--edit candidat
 router.put("/editCandidat/:id", candidatAction.editCandidat);

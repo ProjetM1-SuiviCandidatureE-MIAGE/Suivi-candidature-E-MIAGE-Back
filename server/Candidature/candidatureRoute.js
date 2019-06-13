@@ -66,7 +66,7 @@ function validerSchema(req,res){
     
     Joi.validate(data,schema,(err, result) =>{
         if(err){
-            res.send("Non non non c est encore du caca la ! "+ err);
+            res.send("Non"+ err);
         }
         console.log(result);
         res.send('validation ok');
