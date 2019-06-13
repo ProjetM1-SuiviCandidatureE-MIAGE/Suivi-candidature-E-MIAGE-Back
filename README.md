@@ -396,7 +396,12 @@ Possibilité de se rediriger vers la page inscription à partir de la page de de
 | | Modification de l’état d’une candidature.|  Visualisation / modification / suppression des fichiers uploader.|
 |  |Exportation d’une ou plusieurs candidatures aux formats EXCEL.  |   Notification par mail de l’envoi d’une candidature.|
 |  |  |  Visualisation du traitement de la candidature du candidat.|
+
+
+
 **IV / Travail réalisé par chaque membre du groupe**
+
+
 |  BERTOUX Jeanne| DONNADIEU Damien   | ROUE Tanguy |
 | :---------------: |:---------------:|:---------------:|
 |  Parties fonctionnelle (rapports, Trello, présentation soutenance) / Partie BACK du Projet| Intégralité de la Partie Front du projet  |Partie Back du projet|
