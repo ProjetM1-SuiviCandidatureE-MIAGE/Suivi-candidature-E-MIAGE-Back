@@ -4,6 +4,7 @@ const candidatureAction = require('./candidatureAction');
 const schema = Joi.object().keys({
         date : Joi.string().required(),
         dateTraitement : Joi.string().required(),
+        cv : Joi.string().required(),
         cv : [
             {
             nom : Joi.string().required(),
@@ -80,10 +81,10 @@ router.get('/getAllCandidatures', candidatureAction.getAllCandidatures);
 //Renvoi les candidatures d'un candidat
 router.get('/getCandidatures/:id',candidatureAction.getCandidaturesByID);
 
-router.post('/newCandidature',candidatureAction.newCandidature);
+//router.post('/newCandidature',candidatureAction.newCandidature);
 //router.post('/newCandidature',validerSchema(),candidatureAction.newCandidature);
 //--Creation d'une candidature
-//Joi.validate(router.post('/newCandidature',candidatureAction.newCandidature),schema);
+Joi.validate(router.post('/newCandidature',candidatureAction.newCandidature),schema);
 
 //-- Sauvegarder une candidature en brouillon
 router.post('/saveCandidature',candidatureAction.saveCandidature);
